@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    {{etiqueta}} videojuego
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+    
+
+{% block contenido %}
+    <form method="post">
+        {% csrf_token %}
+        <p>Quieres eliminar la organizacion "{{ object }}"?</p>
+        <input type="submit" value="Sí, si quiero" class="btn btn-danger">
+        <a href="{% url 'organizacion:lista' %}" class="btn btn-primary ">Mejor no</a>
+    </form>
+{% endblock contenido %}
+
+
+{% block js %}
+{% endblock js %}
+
+<!--
+ 
+-->
+

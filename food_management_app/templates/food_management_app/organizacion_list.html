@@ -1,0 +1,69 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+
+{% block titulo %}
+    Lista de Organizaciones
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    
+
+    <h1>Lista de Organizaciones</h1>
+    <a href="{% url 'organizacion:nuevo' %}" class="btn btn-primary">Nueva</a>
+    <hr>
+    <br>
+    <table width="100%" class="table">
+        <thead>
+          <th>Nombre de usuario</th>
+          <th>CP</th>
+          <th>Direccion</th>
+          <th>Telefono</th>
+          <th>P Web</th>
+          <th>Acciones</th>
+        </thead>
+        <tbody>
+            {% for organizacion in object_list  %}
+                <tr>
+                    <td>{{organizacion.username}}</td>
+                    <td>{{organizacion.cp}}</td>
+                    <td>{{organizacion.direccion}}</td>
+                    <td>{{organizacion.telefono}}</td>
+                    <td>{{organizacion.pagina_web}}</td>
+                    <td>
+                        <a href="{% url 'organizacion:editar' organizacion.id %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'organizacion:eliminar' organizacion.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item">
+      {% if page_obj.has_previous %}
+      <span class="page-link"><a href="?page=1">&laquo; first</a></span>
+      <span class="page-link"><a href="?page={{ page_obj.previous_page_number }}">previous</a></span>
+      {% endif %}
+    </li>
+    <li>
+      <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+    </li class="page-item">
+      {% if page_obj.has_next %}
+        <span class="page-link"><a href="?page={{ page_obj.next_page_number }}">next</a></span>
+        <span class="page-link"><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></span>
+      {% endif %}
+    </li>
+  </ul>
+</nav>
+{% endblock contenido %}
+
+
+{% block js %}
+
+{% endblock js %}
+    

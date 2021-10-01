@@ -24,7 +24,7 @@ class Eliminar_organizacion(DeleteView):
 class Nueva_organizacion(CreateView):
     model = Organizacion
     form_class = OrganizacionForm
-    extra_context = {'etiqueta':'Nuevo', 'boton':'Agregar', 'vj_nuevo':True}
+    extra_context = {'etiqueta':'Nueva', 'boton':'Agregar', 'vj_nuevo':True}
     success_url = reverse_lazy('organizacion:lista')
 
 class Editar_organizacion(UpdateView):

@@ -1,0 +1,60 @@
+{% extends 'base.html' %}
+{%  load static %}
+
+
+{% block titulo %}
+    Lista de publicaciones
+{% endblock titulo %}
+    
+
+{% block contenido %}
+    
+
+    <h1>Lista de Organizaciones</h1>
+    <a href="{% url 'publicacion:nuevo' %}" class="btn btn-primary">Nueva</a>
+    <hr>
+    <br>
+    <table width="100%" class="table">
+        <thead>
+          <th>Usuario</th>
+          <th>Fecha</th>
+          <th>Contenido</th>
+        </thead>
+        <tbody>
+            {% for publicacion in object_list  %}
+                <tr>
+                    <td>{{publicacion.usuario}}</td>
+                    <td>{{publicacion.fecha_hora}}</td>
+                    <td>{{publicacion.contenido}}</td>
+                </tr>
+            {% endfor %}
+        </tbody>
+    </table>
+
+<nav aria-label="...">
+  <ul class="pagination">
+    <li class="page-item">
+      {% if page_obj.has_previous %}
+      <span class="page-link"><a href="?page=1">&laquo; first</a></span>
+      <span class="page-link"><a href="?page={{ page_obj.previous_page_number }}">previous</a></span>
+      {% endif %}
+    </li>
+    <li>
+      <span class="current">
+        Page {{ page_obj.number }} of {{ page_obj.paginator.num_pages }}.
+      </span>
+    </li class="page-item">
+      {% if page_obj.has_next %}
+        <span class="page-link"><a href="?page={{ page_obj.next_page_number }}">next</a></span>
+        <span class="page-link"><a href="?page={{ page_obj.paginator.num_pages }}">last &raquo;</a></span>
+      {% endif %}
+    </li>
+  </ul>
+</nav>
+{% endblock contenido %}
+
+
+{% block js %}
+
+{% endblock js %}
+    

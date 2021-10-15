@@ -22,4 +22,5 @@ urlpatterns = [
     path('admin/', admin.site.urls),
     path('organizacion/', include('food_management_app.urls_organizacion')),
     path('publicacion/', include('food_management_app.urls_publicacion')),
+    path('usuario/', include('food_management_app.urls_usuario')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)

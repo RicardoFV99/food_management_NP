@@ -23,3 +23,14 @@ class PublicacionForm(forms.ModelForm):
         model = Publicacion
 
         fields = '__all__'
+
+class UsuarioForm(forms.ModelForm):
+    
+    class Meta:
+        model = Usuario
+
+        fields = ('username','cp')
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre','onFocus':'validar(this)'}),
+            'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal','onFocus':'validar(this)'}),
+        }

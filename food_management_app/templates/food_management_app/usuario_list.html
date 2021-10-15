@@ -3,29 +3,31 @@
 
 
 {% block titulo %}
-    Lista de publicaciones
+    Lista de usuarios (no organizaciones)
 {% endblock titulo %}
     
 
 {% block contenido %}
     
 
-    <h1>Lista de publicaciones</h1>
-    <a href="{% url 'publicacion:nuevo' %}" class="btn btn-primary">Nueva</a>
+    <h1>Lista de usuarios</h1>
+    <a href="{% url 'usuario:nuevo' %}" class="btn btn-primary">Nuevo</a>
     <hr>
     <br>
     <table width="100%" class="table">
         <thead>
-          <th>Usuario</th>
-          <th>Fecha</th>
-          <th>Contenido</th>
+          <th>Nombre del usuario</th>
+          <th>CP</th>
         </thead>
         <tbody>
-            {% for publicacion in object_list  %}
+            {% for usuario in object_list  %}
                 <tr>
-                    <td>{{publicacion.usuario}}</td>
-                    <td>{{publicacion.fecha_hora}}</td>
-                    <td>{{publicacion.contenido}}</td>
+                    <td>{{usuario.username}}</td>
+                    <td>{{usuario.cp}}</td>
+                    <td>
+                        <a href="{% url 'usuario:editar' usuario.id %}" class="btn btn-primary">Editar</a>
+                        <a href="{% url 'usuario:eliminar' usuario.id %}" class="btn btn-danger">Eliminar</a>
+                    </td>
                 </tr>
             {% endfor %}
         </tbody>

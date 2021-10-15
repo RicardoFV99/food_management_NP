@@ -4,12 +4,36 @@ from .models import Publicacion
 from .models import Usuario
 from .forms import OrganizacionForm
 from .forms import PublicacionForm
+from .forms import UsuarioForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
 from django.db.models import Count
 from django_weasyprint import WeasyTemplateResponseMixin
 from django.conf import settings
+
+
+#USUARIO
+
+class Lista_usuarios(ListView):
+    paginate_by = 4
+    model = Usuario
+
+class Eliminar_usuario(DeleteView):
+    model = Usuario
+    success_url = reverse_lazy('usuario:lista')
+
+class Nuevo_usuario(CreateView):
+    model = Usuario
+    form_class = UsuarioForm
+    extra_context = {'etiqueta':'Nueva', 'boton':'Agregar', 'vj_nuevo':True}
+    success_url = reverse_lazy('usuario:lista')
+
+class Editar_usuario(UpdateView):
+    model = Usuario
+    form_class = UsuarioForm
+    extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
+    success_url = reverse_lazy('usuario:lista')
 
 #ORGANIZACION
 

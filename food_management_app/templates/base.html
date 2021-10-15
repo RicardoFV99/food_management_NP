@@ -1,63 +1,98 @@
+{% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
-    <head>
-        <meta charset="UTF-8">
-        <meta name="viewport" content="width=device-width, initial-scale=1.0">
-        <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-BmbxuPwQa2lc/FVzBcNJ7UAyJxM6wuqIj61tLrc4wSX0szH/Ev+nYRRuWlolflfl" crossorigin="anonymous">
-        {% block css %}
-          
-        {% endblock css %}
-        <title>
-            {% block titulo %}
-                
-            {% endblock titulo %}
-        </title>
-    </head>
-    <body>
-      <div class="container">
-    
-        <nav class="navbar navbar-expand-lg navbar-dark bg-primary">
-          <div class="container-fluid">
-            <a class="navbar-brand" href="#">Navbar</a>
-            <button class="navbar-toggler" type="button" data-bs-toggle="collapse" data-bs-target="#navbarNavDropdown" aria-controls="navbarNavDropdown" aria-expanded="false" aria-label="Toggle navigation">
-              <span class="navbar-toggler-icon"></span>
-            </button>
-            <div class="collapse navbar-collapse" id="navbarNavDropdown">
-              <ul class="navbar-nav">
-                <li class="nav-item">
-                  <a class="nav-link active" aria-current="page" href="#">Home</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Features</a>
-                </li>
-                <li class="nav-item">
-                  <a class="nav-link" href="#">Pricing</a>
-                </li>
-                <li class="nav-item dropdown">
-                  <a class="nav-link dropdown-toggle" href="#" id="navbarDropdownMenuLink" role="button" data-bs-toggle="dropdown" aria-expanded="false">
-                    Dropdown link
-                  </a>
-                  <ul class="dropdown-menu" aria-labelledby="navbarDropdownMenuLink">
-                    <li><a class="dropdown-item" href="#">Action</a></li>
-                    <li><a class="dropdown-item" href="#">Another action</a></li>
-                    <li><a class="dropdown-item" href="#">Something else here</a></li>
-                  </ul>
-                </li>
-              </ul>
-            </div>
-          </div>
-        </nav>
-        {% block contenido %}
-        
-        {% endblock contenido %}
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.bundle.min.js" integrity="sha384-b5kHyXgcpbZJO/tY9Ul7kGkf1S0CWuKcCD38l8YkeH8z8QjE0GmW1gYU5S9FOnJ0" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.6.0/dist/umd/popper.min.js" integrity="sha384-KsvD1yqQ1/1+IA7gi3P0tyJcT3vR+NdBTt13hSJ2lnve8agRGXTTyNaBYmCR/Nwi" crossorigin="anonymous"></script>
-        <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.0-beta2/dist/js/bootstrap.min.js" integrity="sha384-nsg8ua9HAw1y0W1btsyWgBklPnCUAFLuTMS2G72MMONqmOymq585AcH49TLBQObG" crossorigin="anonymous"></script>
-        
-        {% block js %}
-          
-        {% endblock js %}
-          
-      </div>
-      </body>
-      </html>
+<html lang="es-mx">
+
+<head>
+	<!-- Meta -->
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+
+	<meta name="author" content="Null Pointers">	
+	<!-- <link rel="shortcut icon" href="{% static 'favicon.png' %}"> -->
+
+	<!-- FontAwesome JS-->
+	<script defer src="{% static 'js/all.min.js' %}"></script>
+
+	<!-- App CSS -->
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/portal.css' %}">
+
+	<title>
+		{% block titulo %}
+
+		{% endblock titulo %}
+	</title>
+
+	{% block css %}
+
+	{% endblock css %}
+</head> 
+
+<body class="app">
+	<header>
+		<div id="app-sidepanel" class="app-sidepanel">
+			<div class="sidepanel-inner d-flex flex-column">
+				<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+				<div class="app-branding">
+					<a class="app-logo" href="index.html"><img class="app-logo mr-2" src="{% static 'images/logo.svg' %}" alt="Food Management"></a>
+				</div><!--//app-branding-->  
+				
+				<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+					<ul class="app-menu list-unstyled accordion" id="menu-accordion">
+						<li class="nav-item">
+							i
+							<span class="nav-link-text">{{user.name}}</span>
+						</li>
+						<li class="nav-item">
+							<!--//Bootstrap Icons: https://icons.getbootstrap.com/ -->
+							<a class="nav-link {% if vj_nuevo %}active{% endif %}" href="index.html">
+								<span class="nav-icon">
+								<svg width="1em" height="1em" viewBox="0 0 16 16" class="bi bi-house-door" fill="currentColor" xmlns="http://www.w3.org/2000/svg">
+		  <path fill-rule="evenodd" d="M7.646 1.146a.5.5 0 0 1 .708 0l6 6a.5.5 0 0 1 .146.354v7a.5.5 0 0 1-.5.5H9.5a.5.5 0 0 1-.5-.5v-4H7v4a.5.5 0 0 1-.5.5H2a.5.5 0 0 1-.5-.5v-7a.5.5 0 0 1 .146-.354l6-6zM2.5 7.707V14H6v-4a.5.5 0 0 1 .5-.5h3a.5.5 0 0 1 .5.5v4h3.5V7.707L8 2.207l-5.5 5.5z"/>
+		  <path fill-rule="evenodd" d="M13 2.5V6l-2-2V2.5a.5.5 0 0 1 .5-.5h1a.5.5 0 0 1 .5.5z"/>
+		</svg>
+								 </span>
+								 <span class="nav-link-text">Página Principal</span>
+							</a><!--//nav-link-->
+						</li><!--//nav-item-->
+	</header><!--//app-header-->
+	<div class="app-wrapper">
+		<div class="app-content pt-3 p-md-3 p-lg-4">
+			<div class="container-xl">
+				
+				{% block contenido %}
+					
+				{% endblock contenido %}
+			</div><!--//container-fluid-->
+		</div><!--//app-content-->
+		<footer class="app-footer">
+			<div class="container text-center py-3">
+				 <!--/* This template is free as long as you keep the footer attribution link. If you'd like to use the template without the attribution link, you can buy the commercial license via our website: themes.3rdwavemedia.com Thank you for your support. :) */-->
+			   
+			</div>
+		</footer><!--//app-footer-->
+		
+	</div><!--//app-wrapper-->						
+
+
+	<!-- Javascript -->
+	<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+	<script src="{% static 'js/popper.min.js' %}"></script>
+
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>  
+
+	<!-- Charts JS -->
+	<script src="{% static 'js/chart.min.js' %}"></script> 
+		
+	<!-- Page Specific JS -->
+	<script src="{% static 'js/app.js' %}"></script>
+		
+	{% block js %}
+		
+	{% endblock js %}
+		
+
+</body>
+</html> 

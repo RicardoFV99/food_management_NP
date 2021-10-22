@@ -1,3 +1,4 @@
+from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
 from .models import Organizacion
 from .models import Publicacion
@@ -11,6 +12,7 @@ from django.urls import reverse_lazy
 from django.db.models import Count
 from django_weasyprint import WeasyTemplateResponseMixin
 from django.conf import settings
+from django.contrib.auth.forms import AuthenticationForm
 
 
 #USUARIO
@@ -79,5 +81,11 @@ class Editar_publicacion(UpdateView):
     extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
     success_url = reverse_lazy('publicacion:lista')
 
+class Login(LoginView):
+    template_name = 'login.html'
+    form_class = AuthenticationForm
+
+    def get_success_url(self):
+        return super().get_success_url
 
 # Create your views here.

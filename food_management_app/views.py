@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 from .models import Organizacion
 from .models import Publicacion
 from .models import Usuario
-from .forms import OrganizacionForm
+from .forms import OrganizacionForm, OrganizacionFormSignup
 from .forms import PublicacionForm
 from .forms import UsuarioForm
 from django.views.generic import ListView, DetailView, TemplateView
@@ -87,5 +87,10 @@ class Login(LoginView):
 
     def get_success_url(self):
         return super().get_success_url
+
+class SignupOrganizacion(CreateView):
+    template_name = 'signup.html'
+    form_class = OrganizacionFormSignup
+    success_url = reverse_lazy('organizacion:login')
 
 # Create your views here.

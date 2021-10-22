@@ -16,6 +16,22 @@ class OrganizacionForm(forms.ModelForm):
             'pagina_web':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Página web','onFocus':'validar(this)'}),
 
         }
+    
+class OrganizacionFormSignup(forms.ModelForm):
+    
+    class Meta:
+        model = Organizacion
+
+        fields = ('username','cp','direccion','telefono','pagina_web','password')
+        widgets = {
+            'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre','onFocus':'validar(this)'}),
+            'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal','onFocus':'validar(this)'}),
+            'direccion':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dirección','onFocus':'validar(this)'}),
+            'telefono':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Teléfono','onFocus':'validar(this)'}),
+            'pagina_web':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Página web','onFocus':'validar(this)'}),
+            'password': forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Contraseña'}),
+        }
+
 
 class PublicacionForm(forms.ModelForm):
     

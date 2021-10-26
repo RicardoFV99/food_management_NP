@@ -19,12 +19,12 @@
                     <form method="POST">
                         {% csrf_token %} 
                         <div class="control-group">
-                            <input type="text" class="login-field" value="" placeholder="username" id="login-name">
+                            <input name="username" type="text" class="login-field" value="" placeholder="username" id="id_username">
                             <label class="login-field-icon fui-user" for="login-name"></label>
                         </div>
         
                         <div class="control-group">
-                            <input type="password" class="login-field" value="" placeholder="password" id="login-pass">
+                            <input name="password" type="password" class="login-field" value="" placeholder="password" id="id_password">
                             <label class="login-field-icon fui-lock" for="login-pass"></label>
                         </div>
                         <button type="submit" class="btn btn-primary btn-large btn-block">Ingresar</button>

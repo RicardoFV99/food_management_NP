@@ -16,6 +16,12 @@ class OrganizacionForm(forms.ModelForm):
             'pagina_web':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Página web','onFocus':'validar(this)'}),
 
         }
+    def save(self, commit=True):
+        user = super(OrganizacionForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password']) #Encripta la contraseña
+        if commit:
+            user.save()
+        return user
     
 class OrganizacionFormSignup(forms.ModelForm):
     
@@ -31,7 +37,12 @@ class OrganizacionFormSignup(forms.ModelForm):
             'pagina_web':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Página web','onFocus':'validar(this)'}),
             'password': forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Contraseña'}),
         }
-
+    def save(self, commit=True):
+        user = super(OrganizacionFormSignup, self).save(commit=False)
+        user.set_password(self.cleaned_data['password']) #Encripta la contraseña
+        if commit:
+            user.save()
+        return user
 
 class PublicacionForm(forms.ModelForm):
     
@@ -50,3 +61,9 @@ class UsuarioForm(forms.ModelForm):
             'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre','onFocus':'validar(this)'}),
             'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal','onFocus':'validar(this)'}),
         }
+    def save(self, commit=True):
+        user = super(UsuarioForm, self).save(commit=False)
+        user.set_password(self.cleaned_data['password']) #Encripta la contraseña
+        if commit:
+            user.save()
+        return user

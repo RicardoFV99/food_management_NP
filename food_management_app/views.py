@@ -82,8 +82,9 @@ class Editar_publicacion(UpdateView):
     success_url = reverse_lazy('publicacion:lista')
 
 class Login(LoginView):
+    model = Organizacion
     template_name = 'login.html'
-    form_class = AuthenticationForm
+    #form_class = AuthenticationForm
     #success_url = reverse_lazy('organizacion:lista')
 
 class SignupOrganizacion(CreateView):

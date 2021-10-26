@@ -84,13 +84,11 @@ class Editar_publicacion(UpdateView):
 class Login(LoginView):
     template_name = 'login.html'
     form_class = AuthenticationForm
-
-    def get_success_url(self):
-        return super().get_success_url
+    #success_url = reverse_lazy('organizacion:lista')
 
 class SignupOrganizacion(CreateView):
     template_name = 'signup.html'
     form_class = OrganizacionFormSignup
-    success_url = reverse_lazy('organizacion:login')
+    success_url = reverse_lazy('compartidas:login')
 
 # Create your views here.

@@ -8,6 +8,4 @@ urlpatterns = [
     path('eliminar/<int:pk>', views.Eliminar_organizacion.as_view(), name='eliminar'),
     path('editar/<int:pk>', views.Editar_organizacion.as_view(), name='editar'),
     path('nuevo/', views.Nueva_organizacion.as_view(), name='nuevo'),
-    path('login/', views.Login.as_view(), name='login'),
-    path('signup/', views.SignupOrganizacion.as_view(), name='signup'),
 ]

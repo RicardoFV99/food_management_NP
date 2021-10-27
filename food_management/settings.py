@@ -1,6 +1,7 @@
 import os
 from pathlib import Path
 from django.urls import reverse_lazy
+
 """
 Django settings for food_management project.
 
@@ -153,3 +154,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'email.for.testing.7357@gmail.com'
 EMAIL_HOST_PASSWORD = 'emailfortesting7357'
 EMAIL_PORT = 587
+
+# Copyright: Null Pointers 2021

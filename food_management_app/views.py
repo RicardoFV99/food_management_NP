@@ -1,11 +1,5 @@
 from django.contrib.auth.views import LoginView
 from django.shortcuts import render, redirect
-from .models import Organizacion
-from .models import Publicacion
-from .models import Usuario
-from .forms import OrganizacionForm, OrganizacionFormSignup
-from .forms import PublicacionForm
-from .forms import UsuarioForm
 from django.views.generic import ListView, DetailView, TemplateView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django.urls import reverse_lazy
@@ -14,8 +8,14 @@ from django_weasyprint import WeasyTemplateResponseMixin
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
 
+from .models import Usuario, Organizacion, Publicacion
+from .forms import UsuarioForm, OrganizacionForm, OrganizacionFormSignup, PublicacionForm
 
-#USUARIO
+
+#############################
+#          USUARIO          #
+#############################
+
 
 class Lista_usuarios(ListView):
     paginate_by = 4
@@ -37,7 +37,11 @@ class Editar_usuario(UpdateView):
     extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
     success_url = reverse_lazy('usuario:lista')
 
-#ORGANIZACION
+
+#############################
+#        ORGANIZACIÓN       #
+#############################
+
 
 class Lista_organizaciones(ListView):
     paginate_by = 4
@@ -59,7 +63,11 @@ class Editar_organizacion(UpdateView):
     extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
     success_url = reverse_lazy('organizacion:lista')
 
-#PUBLICACION
+
+#############################
+#        PUBLICACION        #
+#############################
+
 
 class Lista_publicaciones(ListView):
     paginate_by = 4
@@ -98,4 +106,4 @@ class EditarPerfil(UpdateView):
     extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
     success_url = reverse_lazy('organizacion:lista')
 
-# Create your views here.
+# Copyright: Null Pointers 2021

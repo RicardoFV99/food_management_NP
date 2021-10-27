@@ -16,12 +16,6 @@ class OrganizacionForm(forms.ModelForm):
             'pagina_web':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Página web','onFocus':'validar(this)'}),
 
         }
-    def save(self, commit=True):
-        user = super(OrganizacionForm, self).save(commit=False)
-        user.set_password(self.cleaned_data['password']) #Encripta la contraseña
-        if commit:
-            user.save()
-        return user
     
 class OrganizacionFormSignup(forms.ModelForm):
     

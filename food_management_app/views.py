@@ -92,4 +92,10 @@ class SignupOrganizacion(CreateView):
     form_class = OrganizacionFormSignup
     success_url = reverse_lazy('compartidas:login')
 
+class EditarPerfil(UpdateView):
+    model = Organizacion
+    form_class = OrganizacionForm
+    extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
+    success_url = reverse_lazy('organizacion:lista')
+
 # Create your views here.

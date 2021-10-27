@@ -1,0 +1,48 @@
+.app-content{
+	background-color: #FFFFFF;
+    border-color: #B3B3B3;
+    border-style: solid;
+    border-width: 1px;
+    margin: 3em;
+}
+
+
+
+
+
+
+
+
+
+.img_usuario{
+    width: 60px;
+}
+
+@page{
+    margin: 2cm;
+    @top-left{
+        background-color: blueviolet;
+        content: counter(page) '/' counter(pages);
+        height: 1cm;
+        text-align: center;
+        width: 1cm;
+    }
+    @top-center{
+        background-color: blueviolet;
+        content: '';
+        display: block;
+        height: .05cm;
+        opacity: .5;
+        width: 100%;
+    }
+    @top-right{
+        content: string(heading);
+        font-size: 9pt;
+        height: 1cm;
+        vertical-align: middle;
+        width: 100%;
+    }
+}
+h3{
+    string-set: heading content();
+}

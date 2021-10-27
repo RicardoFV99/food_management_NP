@@ -136,9 +136,9 @@ STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
 
-LOGIN_URL = reverse_lazy('compartidas:login')
-LOGIN_REDIRECT_URL = reverse_lazy('organizacion:lista')
-LOGOUT_REDIRECT_URL = reverse_lazy('compartidas:login')
+LOGIN_URL = reverse_lazy('log_in')
+LOGIN_REDIRECT_URL = reverse_lazy('home')
+LOGOUT_REDIRECT_URL = reverse_lazy('log_in')
 
 
 # Default primary key field type

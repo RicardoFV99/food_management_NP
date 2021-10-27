@@ -1,37 +1,63 @@
 {% load static %}
+
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es-mx">
+
 <head>
-    <meta charset="UTF-8">
-    <meta http-equiv="X-UA-Compatible" content="IE=edge">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <link id="theme-style" rel="stylesheet" href="{% static 'css/estilos_login.css' %}">
-    <title>Iniciar sesión</title>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles_login.css' %}">
+
+	<title>Inicio de Sesi&oacute;n</title>
 </head>
+
 <body>
-        <div class="login">
-            <div class="login-screen">
-                <div class="app-title">
-                    <h1>Login</h1>
-                </div>
-    
-                <div class="login-form">
-                    <form method="POST">
-                        {% csrf_token %} 
-                        <div class="control-group">
-                            <input name="username" type="text" class="login-field" value="" placeholder="username" id="id_username">
-                            <label class="login-field-icon fui-user" for="login-name"></label>
-                        </div>
-        
-                        <div class="control-group">
-                            <input name="password" type="password" class="login-field" value="" placeholder="password" id="id_password">
-                            <label class="login-field-icon fui-lock" for="login-pass"></label>
-                        </div>
-                        <button type="submit" class="btn btn-primary btn-large btn-block">Ingresar</button>
-                    </form>
-                    <a class="login-link" href="#">Lost your password?</a>
-                </div>
-            </div>
-        </div>
+
+    {% if form.errors %}
+		<div class="alert alert-warning">
+			<span>El usuario o contraseña no es correcto</span>
+		</div>
+	{% endif %}
+
+	{% if messages %}
+		{% for message  in messages %}
+			<div class="alert alert-{% if message.tags == 'error'%}danger{%else%}success{%endif%}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<div class="login">
+		<div class="login-screen">
+
+			<div class="app-title">
+				<img class="img-fluid" src="{% static 'images/logo_text.svg' %}" alt="Food Management">
+			</div>
+	
+			<div class="login-form">
+				<form method="POST">
+					{% csrf_token %} 
+					<div class="control-group">
+						<input name="username" type="text" class="login-field" value="" placeholder="Correo Electr&oacute;nico" id="id_username">
+						<label class="login-field-icon fui-user" for="login-name"></label>
+					</div>
+
+					<div class="control-group">
+						<input name="password" type="password" class="login-field" value="" placeholder="Contrase&ntilde;a" id="id_password">
+						<label class="login-field-icon fui-lock" for="login-pass"></label>
+					</div>
+
+					<div style="display: flex;">
+						<a class="btn btn-outline-primary" href="{% url 'sign_in' %}">Crear Cuenta</a>
+						<button type="submit" class="btn btn-primary btn-large btn-block">Ingresar</button>
+					</div>
+				</form>
+			</div>
+		</div>
+	</div>
+
 </body>
 </html>

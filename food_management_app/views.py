@@ -11,6 +11,11 @@ from django.contrib.auth.forms import AuthenticationForm
 from .models import Usuario, Organizacion, Publicacion
 from .forms import UsuarioForm, OrganizacionForm, OrganizacionFormSignup, PublicacionForm
 
+def landing_page(request):
+    return render(request, 'landing_page.html', {})
+
+def home(request):
+    return render(request, 'home.html', {})
 
 #############################
 #          USUARIO          #

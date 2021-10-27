@@ -1,4 +1,4 @@
 db.sqlite3
-food_management_app/__pycache__
 food_management/__pycache__
+food_management_app/__pycache__
 food_management_app/migrations/__pycache__

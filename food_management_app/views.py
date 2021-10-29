@@ -1,6 +1,6 @@
 from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView, PasswordChangeView
-from django.shortcuts import render, redirect
+from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
 from django.views.generic import DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
@@ -77,6 +77,11 @@ class PublicacionNueva(CreateView):
 	model = Publicacion
 	form_class = PublicacionForm
 	success_url = reverse_lazy('home')
+
+	def form_valid(self, form):
+		usuario = get_object_or_404(Organizacion, id=self.request.user.id)
+		form.instance.usuario = usuario
+		return super().form_valid(form)
 
 class PublicacionEditar(UpdateView):
 	model = Publicacion

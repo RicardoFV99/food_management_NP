@@ -20,7 +20,7 @@ class Organizacion(Usuario):
 		return self.username
 
 class Publicacion(models.Model):
-	usuario = models.ForeignKey("food_management_app.Organizacion", verbose_name="Organizacion", on_delete=models.CASCADE)
+	usuario = models.ForeignKey("food_management_app.Organizacion", verbose_name="Organizacion", blank=True, null=True, on_delete=models.CASCADE)
 	contenido = models.CharField(max_length = 300)
 	fecha_hora = models.DateTimeField(default=now, editable=False)
 

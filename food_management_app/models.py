@@ -12,7 +12,7 @@ class Organizacion(Usuario):
 	direccion = models.CharField(max_length = 150)
 	telefono = models.CharField(max_length = 150)
 	pagina_web = models.CharField(max_length = 150)
-
+	visibilidad=models.BooleanField(default=1)
 	def __str__(self):
 		return self.username
 

@@ -11,7 +11,9 @@
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
 	<!-- Redireccionar si ya ha iniciado sesión -->
-	<!--meta http-equiv="Refresh" content="0; url='{% url 'home'%}'" /-->
+	{% if user.is_authenticated %}
+		<meta http-equiv="Refresh" content="0; url='{% url 'home'%}'">
+	{% endif %}
 
 	<title>Food Management</title>
 </head>

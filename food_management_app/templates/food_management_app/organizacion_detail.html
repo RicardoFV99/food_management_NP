@@ -1,0 +1,30 @@
+{% extends 'base.html' %}
+
+{% block titulo %}
+    {{etiqueta}} organizacion
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+
+{% block contenido %}
+    <h1>Mi Perfil</h1>
+    <p>Nombre: {{object.username}}</p>
+    <p>Correo Electronico: {{object.email}}</p>
+    <p>Dirección: {{object.direccion}}</p>
+    <p>Teléfono: {{object.telefono}}</p>
+    <p>Sitio web: {{object.pagina_web}}</p>
+    <p>Código postal: {{object.cp}}</p>
+    {% if object.visibilidad %}
+        <p>¿Estoy visible?: Si</p>
+    {% else %}
+        <p>¿Estoy visible?: No</p>
+    {% endif %}
+
+    <a href="{% url 'organizacion:editar' request.user.id %}" class="btn btn-secondary">Editar</a>
+
+{% endblock contenido %}
+
+
+{% block js %}
+{% endblock js %}

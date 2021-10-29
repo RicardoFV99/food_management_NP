@@ -21,6 +21,7 @@
           <th>Dirección</th>
           <th>Teléfono</th>
           <th>P Web</th>
+          <th>Visibilidad</th>
           <th>Acciones</th>
         </thead>
         <tbody>
@@ -31,6 +32,7 @@
                     <td>{{organizacion.direccion}}</td>
                     <td>{{organizacion.telefono}}</td>
                     <td>{{organizacion.pagina_web}}</td>
+                    <td>{{organizacion.visibilidad}}</td>
                     <td>
                         <a href="{% url 'organizacion:editar' organizacion.id %}" class="btn btn-primary">Editar</a>
                         <a href="{% url 'organizacion:eliminar' organizacion.id %}" class="btn btn-danger">Eliminar</a>

@@ -14,7 +14,11 @@
         {% csrf_token %}
         {{form.as_p}}
         <button type="submit" class="btn btn-success">{{boton}}</button>
+        <a href="{% url 'organizacion:ver' request.user.id %}" type="submit" class="btn btn-danger">Cancelar</a>
+        <a href="{% url 'update_password' %}" type="submit" class="btn btn-warning">Cambiar contraseña</a>
+
     </form>
+
 {% endblock contenido %}
 
 

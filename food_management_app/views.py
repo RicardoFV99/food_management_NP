@@ -7,6 +7,8 @@ from django.db.models import Count
 from django_weasyprint import WeasyTemplateResponseMixin
 from django.conf import settings
 from django.contrib.auth.forms import AuthenticationForm
+from django.contrib.auth.views import PasswordChangeView
+from django.contrib.auth.forms import PasswordChangeForm
 
 from .models import Usuario, Organizacion, Publicacion
 from .forms import UsuarioForm, OrganizacionForm, OrganizacionFormSignup, PublicacionForm
@@ -68,6 +70,13 @@ class Editar_organizacion(UpdateView):
     extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
     success_url = reverse_lazy('organizacion:lista')
 
+class OrganizacionDetalle(DetailView):
+    model = Organizacion
+
+class UpdatePassword(PasswordChangeView):
+    form_class = PasswordChangeForm
+    success_url = reverse_lazy('logout')
+    template_name = 'food_management_app/change-password.html'
 
 #############################
 #        PUBLICACION        #
@@ -103,12 +112,14 @@ class Login(LoginView):
 class SignupOrganizacion(CreateView):
     template_name = 'signup.html'
     form_class = OrganizacionFormSignup
-    success_url = reverse_lazy('compartidas:login')
+    success_url = reverse_lazy('log_in')
 
 class EditarPerfil(UpdateView):
     model = Organizacion
-    form_class = OrganizacionForm
+    form_class = OrganizacionFormSignup
     extra_context = {'etiqueta':'Actualizar', 'boton':'Guardar'}
     success_url = reverse_lazy('organizacion:lista')
+
+
 
 # Copyright: Null Pointers 2021

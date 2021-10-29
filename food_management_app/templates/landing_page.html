@@ -10,11 +10,6 @@
 
 	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
 
-	<!-- Redireccionar si ya ha iniciado sesión -->
-	{% if user.is_authenticated %}
-		<meta http-equiv="Refresh" content="0; url='{% url 'home'%}'">
-	{% endif %}
-
 	<title>Food Management</title>
 </head>
 
@@ -23,11 +18,11 @@
 	<header  id="app-sidepanel" class="app-sidepanel" style="border-right: none;">
 
 		<div class="sidepanel-inner d-flex flex-column" style="background: none; box-shadow: none;">
-			<a class="app-logo" href="{% url 'landing_page' %}"><img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="Food Management"></a>
+			<img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="Food Management">
 		</div>
 	</header>
 
-	<a href="{% url 'log_in' %}" style="font-size: 27px; font-weight: bold; position: absolute; right: 1em; top: 0.5em;">Iniciar Sesi&oacute;n</a>
+	<a href="{% url 'login' %}" style="font-size: 27px; font-weight: bold; position: absolute; right: 1em; top: 0.5em;">Iniciar Sesi&oacute;n</a>
 
 	<div class="parent container d-flex justify-content-center align-items-center h-100" style="display: grid !important; min-height: 100vh;">
 		<img class="img-responsive" height="470px" width="470px" src="{% static 'images/image45546.png' %}" alt="" style="border-radius: 50%;">

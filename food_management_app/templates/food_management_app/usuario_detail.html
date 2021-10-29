@@ -1,0 +1,27 @@
+{% extends 'base.html' %}
+{% load static %}
+
+{% block titulo %}
+	Mi Perfil
+{% endblock titulo %}
+
+{% block css %}
+{% endblock css %}
+
+{% block contenido %}
+	<h1>Mi Perfil</h1>
+	{% if object.foto %}
+	<!-- Foto desde Media -->
+	{% else %}
+	<img src="{% static 'images/photo_placeholder.png' %}" alt="Foto de Perfil" style="border-radius: 50%; float: right; max-width: 150px;">
+	{% endif%}
+	<p>Nombre: {{object.first_name}} {{object.last_name}}</p>
+	<p>Correo Electronico: {{object.email}}</p>
+	<p>Código postal: {{object.cp}}</p>
+
+	<a href="{% url 'usuario:editar' request.user.id %}" class="btn btn-secondary">Editar</a>
+
+{% endblock contenido %}
+
+{% block js %}
+{% endblock js %}

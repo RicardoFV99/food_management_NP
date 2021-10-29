@@ -1,24 +1,34 @@
 {% extends 'base.html' %}
+{% load static %}
 
 {% block titulo %}
-    {{etiqueta}} organizacion
+	Editar Perfil
 {% endblock titulo %}
 
 {% block css %}
 {% endblock css %}
-    
+
 
 {% block contenido %}
-    <h1>{{etiqueta}} organizacion</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-success">{{boton}}</button>
-        <a href="{% url 'organizacion:ver' request.user.id %}" type="submit" class="btn btn-danger">Cancelar</a>
-        <a href="{% url 'update_password' %}" type="submit" class="btn btn-warning">Cambiar contraseña</a>
+	<h1>Editar Perfil</h1>
 
-    </form>
+	{% if object.foto %}
+	<!-- Foto desde Media -->
+	{% else %}
+	<img src="{% static 'images/photo_placeholder.png' %}" alt="Foto de Perfil" style="border-radius: 50%; float: right; max-width: 150px;">
+	{% endif%}
 
+	<form method="post">
+		{% csrf_token %}
+		{% for field in form %}
+		{{field}}
+		<br>
+		{% endfor %}
+		<a href="{% url 'update_password' %}" class="btn btn-success">Cambiar Contrase&ntilde;a</a>
+		<a href="{% url 'usuario:eliminar' user.id %}" class="btn btn-danger">Eliminar Cuenta</a>
+		<button type="submit" class="btn btn-success" style="float: right;">Guardar</button>
+		
+	</form>
 {% endblock contenido %}
 
 

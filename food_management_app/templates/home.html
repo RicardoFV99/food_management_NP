@@ -1,11 +1,20 @@
 {% extends 'base.html' %}
-{%  load static %}
+{% load static %}
 
 
 {% block titulo %}
-    Lista de Organizaciones
+	Lista de Organizaciones
 {% endblock titulo %}
 
 {% block contenido %}
-    <h4 style="text-align: center;">No hay publicaciones aún</h4 style="text-align: center;">
+	<a href="{% url 'publicacion:nuevo' %}" class="btn btn-primary" style="border-radius: 100%; position: absolute; right: 1em; top: 1em; width: 3em; height: 3em; padding: 10px; color: #FFF; font-weight: bold;">+</a>
+
+	{% for publicacion in publicaciones %}
+		<div class="container">
+			<p>{{publicacion.usuario}}</p>
+			<p>{{publicacion.fecha_hora}}</p>
+			<p>{{publicacion.contenido}}</p>
+		</div>
+	{% endfor %}
+
 {% endblock contenido %}

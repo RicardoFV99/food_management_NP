@@ -15,14 +15,11 @@ border-radius: 5px
 }
 
 .app-title {
-	margin-bottom: 3em;
+	margin-bottom: 1em;
 }
 
 .login-form {
 text-align: center;
-}
-.control-group {
-margin-bottom: 10px;
 }
 
 input {

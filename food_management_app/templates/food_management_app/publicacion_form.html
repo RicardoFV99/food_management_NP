@@ -1,20 +1,22 @@
 {% extends 'base.html' %}
 
 {% block titulo %}
-    {{etiqueta}} publicacion
+	Crear Publicaci&oacute;n
 {% endblock titulo %}
 
 {% block css %}
 {% endblock css %}
-    
 
 {% block contenido %}
-    <h1>{{etiqueta}} publicacion</h1>
-    <form method="post">
-        {% csrf_token %}
-        {{form.as_p}}
-        <button type="submit" class="btn btn-success">{{boton}}</button>
-    </form>
+	<h1>Crear Publicaci&oacute;n</h1>
+	<form method="post">
+		{% csrf_token %}
+		
+		{% for fields in form %}
+			{{fields}}
+		{% endfor %}
+		<button type="submit" class="btn btn-success">Guardar</button>
+	</form>
 {% endblock contenido %}
 
 

@@ -6,10 +6,10 @@ from . import views
 urlpatterns = [
 	path('', views.landing_page, name='landing_page'),
 	path('home/', views.home, name='home'),
-	path('login/', views.Login.as_view(), name='log_in'),
-	path('signin/', views.SignupOrganizacion.as_view(), name='sign_in'),
-	path('change-password/', views.UpdatePassword.as_view(), name="update_password"),
+	path('signin/', views.Signin.as_view(), name='signin'),
+	path('login/', views.Login.as_view(), name='login'),
 	path('logout/', LogoutView.as_view(), name='logout'),
+	path('change-password/', views.UpdatePassword.as_view(), name="update_password"),
 ]
 
 # Copyright: Null Pointers 2021

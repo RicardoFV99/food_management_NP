@@ -16,7 +16,7 @@
 
 <body>
 
-    {% if form.errors %}
+	{% if form.errors %}
 		<div class="alert alert-warning">
 			<span>El usuario o contraseña no es correcto</span>
 		</div>
@@ -41,7 +41,7 @@
 				<form method="POST">
 					{% csrf_token %} 
 					<div class="control-group">
-						<input name="username" type="text" class="login-field" value="" placeholder="Correo Electr&oacute;nico" id="id_username">
+						<input name="username" type="email" class="login-field" value="" placeholder="Correo Electr&oacute;nico" id="id_username">
 						<label class="login-field-icon fui-user" for="login-name"></label>
 					</div>
 
@@ -51,7 +51,7 @@
 					</div>
 
 					<div style="display: flex;">
-						<a class="btn btn-outline-primary" href="{% url 'sign_in' %}">Crear Cuenta</a>
+						<a class="btn btn-outline-primary" href="{% url 'signin' %}">Crear Cuenta</a>
 						<button type="submit" class="btn btn-primary btn-large btn-block">Ingresar</button>
 					</div>
 				</form>

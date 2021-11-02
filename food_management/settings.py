@@ -2,7 +2,7 @@ import os
 from pathlib import Path
 from django.urls import reverse_lazy
 
-import dj_database_url
+import django_heroku
 
 """
 Django settings for food_management project.
@@ -137,12 +137,7 @@ USE_TZ = True
 
 STATIC_URL = '/static/'
 
-if not DEBUG:
-    STATIC_ROOT = ''
-
-STATICFILES_DIRS = [
-    os.path.join(BASE_DIR, 'static/'),
-]
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('home')
@@ -162,5 +157,9 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'email.for.testing.7357@gmail.com'
 EMAIL_HOST_PASSWORD = 'emailfortesting7357'
 EMAIL_PORT = 587
+
+# Activate Django-Heroku.
+django_heroku.settings(locals())
+
 
 # Copyright: Null Pointers 2021

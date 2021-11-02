@@ -135,10 +135,12 @@ USE_TZ = True
 # Static files (CSS, JavaScript, Images)
 # https://docs.djangoproject.com/en/3.2/howto/static-files/
 
+STATIC_ROOT = os.path.join(BASE_DIR, 'static')
 STATIC_URL = '/static/'
 STATICFILES_DIRS = (
     os.path.join(BASE_DIR, 'static/'),
 )
+
 
 LOGIN_URL = reverse_lazy('login')
 LOGIN_REDIRECT_URL = reverse_lazy('home')
@@ -158,23 +160,5 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'email.for.testing.7357@gmail.com'
 EMAIL_HOST_PASSWORD = 'emailfortesting7357'
 EMAIL_PORT = 587
-
-# Heroku settings
-# ROOT_PATH = os.path.dirname(__file__)
-if os.getcwd() == '/app':
-    import dj_database_url
-    DATABASES = {
-        'default': dj_database_url.config(default='postgres://localhost')
-    }
-
-    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
-
-    ALLOWED_HOSTS = ['*']
-
-    BASE_DIR = os.path.dirname(os.path.abspath(__file__)),
-    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
-    STATICFILES_DIRS = (
-        os.path.join(BASE_DIR, 'static'),
-    )
 
 # Copyright: Null Pointers 2021

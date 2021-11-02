@@ -5,6 +5,7 @@ from django.contrib.auth.backends import ModelBackend
 from django.utils.timezone import now
 
 class Usuario(User):
+	username = None
 	cp = models.CharField(max_length = 5)
 
 	def __str__(self):

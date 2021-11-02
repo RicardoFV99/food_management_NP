@@ -2,6 +2,8 @@ import os
 from pathlib import Path
 from django.urls import reverse_lazy
 
+import dj_database_url
+
 """
 Django settings for food_management project.
 
@@ -156,5 +158,23 @@ EMAIL_HOST = 'smtp.gmail.com'
 EMAIL_HOST_USER = 'email.for.testing.7357@gmail.com'
 EMAIL_HOST_PASSWORD = 'emailfortesting7357'
 EMAIL_PORT = 587
+
+# Heroku settings
+# ROOT_PATH = os.path.dirname(__file__)
+if os.getcwd() == '/app':
+    import dj_database_url
+    DATABASES = {
+        'default': dj_database_url.config(default='postgres://localhost')
+    }
+
+    SECURE_PROXY_SSL_HEADER = ('HTTP_X_FORWARDED_PROTO', 'https')
+
+    ALLOWED_HOSTS = ['*']
+
+    BASE_DIR = os.path.dirname(os.path.abspath(__file__)),
+    STATIC_ROOT = os.path.join(BASE_DIR, 'static')
+    STATICFILES_DIRS = (
+        os.path.join(BASE_DIR, 'static'),
+    )
 
 # Copyright: Null Pointers 2021

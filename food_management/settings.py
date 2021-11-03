@@ -123,7 +123,7 @@ AUTH_PASSWORD_VALIDATORS = [
     },
 ]
 
-AUTHENTICATION_BACKENDS = ['food_management_app.models.EmailBackend']
+#AUTHENTICATION_BACKENDS = ['food_management_app.models.EmailBackend']
 
 
 # Internationalization

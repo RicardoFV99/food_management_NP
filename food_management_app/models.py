@@ -5,7 +5,6 @@ from django.contrib.auth.backends import ModelBackend
 from django.utils.timezone import now
 
 class Usuario(User):
-	username = None
 	cp = models.CharField(max_length = 5)
 
 	def __str__(self):
@@ -25,16 +24,16 @@ class Publicacion(models.Model):
 	contenido = models.CharField(max_length = 300)
 	fecha_hora = models.DateTimeField(default=now, editable=False)
 
-class EmailBackend(ModelBackend):
-	def authenticate(self, request, username=None, password=None, **kwargs):
-		UserModel = get_user_model()
-		try:
-			user = UserModel.objects.get(email=username)
-		except UserModel.DoesNotExist:
-			return None
-		else:
-			if user.check_password(password):
-				return user
-		return None
+#class EmailBackend(ModelBackend):
+#	def authenticate(self, request, username=None, password=None, **kwargs):
+#		UserModel = get_user_model()
+#		try:
+#			user = UserModel.objects.get(email=username)
+#		except UserModel.DoesNotExist:
+#			return None
+#		else:
+#			if user.check_password(password):
+#				return user
+#		return None
 
 # Copyright: Null Pointers 2021

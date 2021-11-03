@@ -174,6 +174,7 @@ EMAIL_PORT = 587
 
 # Activate Django-Heroku.
 django_heroku.settings(locals())
+STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 # Copyright: Null Pointers 2021

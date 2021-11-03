@@ -1,6 +1,7 @@
 django
+django-heroku
 django-weasyprint
-dj_database_url
+gunicorn
 mysqlclient
 Pillow
 six

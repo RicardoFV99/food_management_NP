@@ -35,9 +35,9 @@ class OrganizacionFormSignup(forms.ModelForm):
 	class Meta:
 		model = Organizacion
 
-		fields = ('email', 'password', 'cp', 'direccion', 'telefono', 'password')
+		fields = ('username', 'password', 'cp', 'direccion', 'telefono', 'password')
 		widgets = {
-			'email':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Correo Electrónico','onFocus':'validar(this)'}),
+			'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Usuario','onFocus':'validar(this)'}),
 			'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal','onFocus':'validar(this)'}),
 			'direccion':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dirección','onFocus':'validar(this)'}),
 			'telefono':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Teléfono','onFocus':'validar(this)'}),

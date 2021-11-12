@@ -61,11 +61,14 @@ class OrganizacionVer(DetailView):
 class OrganizacionEditar(UpdateView):
 	model = Organizacion
 	form_class = OrganizacionForm
-	success_url = reverse_lazy('landing_page')
+	success_url = reverse_lazy('home')
 
 class OrganizacionEliminar(DeleteView):
 	model = Organizacion
 	success_url = reverse_lazy('logout')
+ 
+class UsuarioVer(DetailView):
+    	model = Organizacion
 
 
 #############################

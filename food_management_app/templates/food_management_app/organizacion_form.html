@@ -24,8 +24,10 @@
 		{{field}}
 		<br>
 		{% endfor %}
-		<a href="{% url 'update_password' %}" class="btn btn-success">Cambiar Contrase&ntilde;a</a>
-		<a href="{% url 'usuario:eliminar' user.id %}" class="btn btn-danger">Eliminar Cuenta</a>
+		<a href="{% url 'update_password' %}" class="btn btn-warning">Cambiar Contrase&ntilde;a</a>
+		<a href="{% url 'organizacion:eliminar' user.id %}" class="btn btn-danger">Eliminar Cuenta</a>
+		<a href="{% url 'organizacion:ver' user.id %}" class="btn btn-primary">Regresar</a>
+		
 		<button type="submit" class="btn btn-success" style="float: right;">Guardar</button>
 		
 	</form>

@@ -86,22 +86,18 @@ WSGI_APPLICATION = 'food_management.wsgi.application'
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
 DATABASES = {
-
-    'default': dj_database_url.config(
-        default=config('DATABASE_URL')
-    )
     #'default': {
     #    'ENGINE': 'django.db.backends.sqlite3',
     #    'NAME': BASE_DIR / 'db.sqlite3',
     #}
-    #'default': {
-    #    'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'food_management',
-    #    'USER': 'fooduser',
-    #    'PASSWORD': 'Contraseña7654/(%&/',
-    #    'HOST': 'localhost',
-    #    'PORT': 3306
-    #}
+    'default': {
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'food_management',
+        'USER': 'fooduser',
+        'PASSWORD': 'Contraseña7654/(%&/',
+        'HOST': 'localhost',
+        'PORT': 3306
+    }
 }
 
 
@@ -173,8 +169,8 @@ EMAIL_HOST_PASSWORD = 'emailfortesting7357'
 EMAIL_PORT = 587
 
 # Activate Django-Heroku.
-django_heroku.settings(locals())
-STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+#django_heroku.settings(locals())
+#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 # Copyright: Null Pointers 2021

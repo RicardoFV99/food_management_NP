@@ -31,40 +31,41 @@
 	<header  id="app-sidepanel" class="app-sidepanel">
 
 		<div class="sidepanel-inner d-flex flex-column">
-			<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none">&times;</a>
+			<a href="#" id="sidepanel-close" class="sidepanel-close d-xl-none"><i class="fa fa-plus"></i> Agregar Publicación</a>
 
 			<a class="app-logo" href="{% url 'home' %}"><img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="Food Management"></a>
 
 			<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'organizacion:ver' request.user.id %}" style="padding-left: 16px;">
-							<img src="{% static 'images/building.svg' %}" alt="" style="width: 6em;">
-							<span class="nav-link-text">{{user.first_name}}</span>
+						<a class="nav-link" href="{% url 'home' %}">
+							<i class="fa fa-home"></i>
+							<span class="nav-link-text"> Inicio</span>
+						</a>
+					</li>
+					<li class="nav-item">
+						<a class="nav-link" href="{% url 'organizacion:ver' request.user.id %}">
+							<i class="fa fa-user-circle"></i>
+							<span class="nav-link-text"> Mi Perfil</span>
 						</a>
 					</li>
 				</ul>
 			</nav>
 
 		</div>
+
 	</header>
 
 	<div class="app-wrapper">
-		
-		<div class="app-content pt-3 p-md-3 p-lg-4">
-			<div class="container-xl">
-				{% block contenido %}
+		{% block contenido %}
 					
-				{% endblock contenido %}
-			</div>
-		</div>
-
+		{% endblock contenido %}
+		
 		<footer class="app-footer">
 			<div class="container text-right py-3">
 				<p>&copy; Equipo Null Pointers 2021</p>
 			</div>
 		</footer>
-		
 	</div>
 
 	<script src="{% static 'js/app.js' %}"></script>

@@ -17,7 +17,7 @@
 	<img src="{% static 'images/photo_placeholder.png' %}" alt="Foto de Perfil" style="border-radius: 50%; float: right; max-width: 150px;">
 	{% endif%}
 
-	<p>Nombre: {{object.first_name}}</p>
+	<p>Nombre: {{object.username}}</p>
 	<p>Correo Electronico: {{object.email}}</p>
 	<p>Dirección: {{object.direccion}}</p>
 	<p>Teléfono: {{object.telefono}}</p>
@@ -30,6 +30,8 @@
 	{% endif %}
 
 	<a href="{% url 'organizacion:editar' request.user.id %}" class="btn btn-secondary">Editar</a>
+	<a href="{% url 'organizacion:pdf_datos_org' request.user.id %}" class="btn btn-secondary">PDF</a>
+
 
 {% endblock contenido %}
 

@@ -46,3 +46,13 @@
 h3{
     string-set: heading content();
 }
+
+.containerPublicacion {
+    border-radius: 10px;
+    border-width: 1px;
+    border-style: solid;
+    border-color: grey;
+    margin: 10px;
+    padding-left: 10px;
+    padding-top: 10px;
+}

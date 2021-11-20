@@ -9,7 +9,7 @@ class UsuarioForm(forms.ModelForm):
 
 		fields = ('first_name', 'last_name', 'email', 'cp')
 		widgets = {
-			'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Nombre', 'onFocus':'validar(this)'}),
+			'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Nombre', 'onFocus':'validar(this)'}),
 			'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder':'Apellido', 'onFocus':'validar(this)'}),
 			'email':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Correo Electrónico', 'onFocus':'validar(this)'}),
 			'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal', 'onFocus':'validar(this)'}),
@@ -20,14 +20,14 @@ class OrganizacionForm(forms.ModelForm):
 	class Meta:
 		model = Organizacion
 
-		fields = ('first_name', 'email', 'cp','direccion','pagina_web')
+		fields = ('username', 'email', 'cp','direccion','pagina_web', 'telefono')
 		widgets = {
-			'first_name':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre','onFocus':'validar(this)'}),
+			'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Nombre','onFocus':'validar(this)'}),
 			'email':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Correo Electrónico', 'onFocus':'validar(this)'}),
 			'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código Postal','onFocus':'validar(this)'}),
 			'direccion':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dirección','onFocus':'validar(this)'}),
 			'pagina_web':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Sitio Web'}),
-
+			'telefono' :forms.TextInput(attrs={'class':'form-control', 'placeholder':'Telefono','onFocus':'validar(this)'}),
 		}
 
 class OrganizacionFormSignup(forms.ModelForm):
@@ -35,12 +35,10 @@ class OrganizacionFormSignup(forms.ModelForm):
 	class Meta:
 		model = Organizacion
 
-		fields = ('username', 'password', 'cp', 'direccion', 'telefono', 'password')
+		fields = ('username', 'email','password')
 		widgets = {
 			'username':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Usuario','onFocus':'validar(this)'}),
-			'cp':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Código postal','onFocus':'validar(this)'}),
-			'direccion':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Dirección','onFocus':'validar(this)'}),
-			'telefono':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Teléfono','onFocus':'validar(this)'}),
+			'email':forms.TextInput(attrs={'class':'form-control', 'placeholder':'Correo Electrónico', 'onFocus':'validar(this)'}),
 			'password': forms.PasswordInput(attrs={'class':'form-control', 'placeholder':'Contraseña'}),
 		}
 

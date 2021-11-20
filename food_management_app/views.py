@@ -2,8 +2,10 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
-from django.views.generic import DetailView
+from django_weasyprint import WeasyTemplateResponseMixin
+
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
+from django.views.generic import ListView, DetailView
 
 from .models import Usuario, Organizacion, Publicacion
 from .forms import UsuarioForm, OrganizacionForm, OrganizacionFormSignup, PublicacionForm
@@ -61,12 +63,22 @@ class OrganizacionVer(DetailView):
 class OrganizacionEditar(UpdateView):
 	model = Organizacion
 	form_class = OrganizacionForm
-	success_url = reverse_lazy('landing_page')
+	success_url = reverse_lazy('home')
 
 class OrganizacionEliminar(DeleteView):
 	model = Organizacion
 	success_url = reverse_lazy('logout')
+ 
+class UsuarioVer(DetailView):
+    	model = Organizacion
+     
+class DatosOrganizacionPDF(DetailView):
+    model = Organizacion
+    template_name = 'food_management_app/organizacion_pdf.html'
 
+class PdfDetallesOrganizacion(WeasyTemplateResponseMixin, DatosOrganizacionPDF):
+    pdf_attachment = False
+    pdf_filename = 'food_management_app/organizacion_detail.html.pdf'
 
 #############################
 #        PUBLICACION        #

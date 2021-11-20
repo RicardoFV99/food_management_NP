@@ -5,16 +5,16 @@ from django.contrib.auth.backends import ModelBackend
 from django.utils.timezone import now
 
 class Usuario(User):
-	cp = models.CharField(max_length = 5)
+	cp = models.CharField(max_length = 5, blank=True, null=True)
 
 	def __str__(self):
 		return self.username 
 
 class Organizacion(Usuario):
-	direccion = models.CharField(max_length = 150)
-	telefono = models.CharField(max_length = 150)
+	direccion = models.CharField(max_length = 150, blank=True, null=True)
+	telefono = models.CharField(max_length = 150, blank=True, null=True)
 	pagina_web = models.CharField(max_length = 150, blank=True, null=True)
-	visibilidad=models.BooleanField(default=1)
+	visibilidad=models.BooleanField(default=1, blank=True, null=True)
 	
 	def __str__(self):
 		return self.username

@@ -1,0 +1,63 @@
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-mx">
+
+<head>
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="initial-scale=1.0, width=device-width">
+
+	<meta name="author" content="Null Pointers">
+
+	<script defer src="{% static 'js/all.min.js' %}"></script>
+
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles.css' %}">
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/custom.css' %}">
+
+	<title>
+		{% block titulo %}
+
+		{% endblock titulo %}
+	</title>
+
+	{% block css %}
+
+	{% endblock css %}
+</head> 
+
+<body class="app">
+
+	<header  id="app-sidepanel" class="app-sidepanel">
+
+	</header>
+
+	<div class="app-wrapper">
+		{% block contenido %}
+					
+		{% endblock contenido %}
+		
+		<footer class="app-footer">
+			<div class="container text-right py-3">
+				<p>&copy; Equipo Null Pointers 2021</p>
+			</div>
+		</footer>
+	</div>
+
+	<script src="{% static 'js/app.js' %}"></script>
+
+	<script src="{% static 'js/bootstrap.min.js' %}"></script>
+
+	<script src="{% static 'js/chart.min.js' %}"></script>
+
+	<script src="{% static 'js/jquery-3.6.0.min.js' %}"></script>
+
+	<script src="{% static 'js/popper.min.js' %}"></script>
+
+	{% block js %}
+
+	{% endblock js %}
+</body>
+</html>
+
+<!-- Copyright: Equipo Null Pointers 2021 -->

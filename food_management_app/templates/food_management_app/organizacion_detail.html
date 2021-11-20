@@ -30,6 +30,8 @@
 	{% endif %}
 
 	<a href="{% url 'organizacion:editar' request.user.id %}" class="btn btn-secondary">Editar</a>
+	<a href="{% url 'organizacion:pdf_datos_org' request.user.id %}" class="btn btn-secondary">PDF</a>
+
 
 {% endblock contenido %}
 

@@ -2,13 +2,13 @@ from django.contrib.auth.forms import AuthenticationForm, PasswordChangeForm
 from django.contrib.auth.views import LoginView, PasswordChangeView
 from django.shortcuts import render, redirect, get_object_or_404
 from django.urls import reverse_lazy
+from django.views.generic import ListView, DetailView
+from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django_weasyprint import WeasyTemplateResponseMixin
 
-from django.views.generic.edit import CreateView, DeleteView, UpdateView
-from django.views.generic import ListView, DetailView
 
 from .models import Usuario, Organizacion, Publicacion
-from .forms import UsuarioForm, OrganizacionForm, OrganizacionFormSignup, PublicacionForm
+from .forms import UsuarioCreateForm, UsuarioUpdateForm, OrganizacionCreateForm, OrganizacionUpdateForm, PublicacionCreateForm, PublicacionUpdateForm
 
 
 def landing_page(request):
@@ -19,14 +19,28 @@ def home(request):
 
 	return render(request, 'home.html', {'publicaciones': publicaciones})
 
+
+#############################
+#           LOGIN           #
+#############################
+
+
 class Login(LoginView):
-	model = Organizacion
+	model = Usuario
 	template_name = 'login.html'
 
-class Signin(CreateView):
-	template_name = 'signin.html'
-	form_class = OrganizacionFormSignup
-	success_url = reverse_lazy('login')
+def signin(request):
+	if request.POST:
+		if request.POST.get("es_organizacion", None):
+			form = OrganizacionCreateForm(request.POST)
+		else:
+			form = UsuarioCreateForm(request.POST)
+
+		if form.is_valid():
+			form.save()
+			return render(request, 'login.html', {})
+
+	return render(request, 'signin.html', {})
 
 class UpdatePassword(PasswordChangeView):
 	form_class = PasswordChangeForm
@@ -44,7 +58,7 @@ class UsuarioVer(DetailView):
 
 class UsuarioEditar(UpdateView):
 	model = Usuario
-	form_class = UsuarioForm
+	form_class = UsuarioUpdateForm
 	success_url = reverse_lazy('home')
 
 class UsuarioEliminar(DeleteView):
@@ -62,15 +76,12 @@ class OrganizacionVer(DetailView):
 
 class OrganizacionEditar(UpdateView):
 	model = Organizacion
-	form_class = OrganizacionForm
+	form_class = OrganizacionUpdateForm
 	success_url = reverse_lazy('home')
 
 class OrganizacionEliminar(DeleteView):
 	model = Organizacion
 	success_url = reverse_lazy('logout')
- 
-class UsuarioVer(DetailView):
-    	model = Organizacion
      
 class DatosOrganizacionPDF(DetailView):
     model = Organizacion
@@ -87,7 +98,7 @@ class PdfDetallesOrganizacion(WeasyTemplateResponseMixin, DatosOrganizacionPDF):
 
 class PublicacionNueva(CreateView):
 	model = Publicacion
-	form_class = PublicacionForm
+	form_class = PublicacionCreateForm
 	success_url = reverse_lazy('home')
 
 	def form_valid(self, form):
@@ -97,7 +108,7 @@ class PublicacionNueva(CreateView):
 
 class PublicacionEditar(UpdateView):
 	model = Publicacion
-	form_class = PublicacionForm
+	form_class = PublicacionUpdateForm
 	success_url = reverse_lazy('home')
 
 class PublicacionEliminar(DeleteView):

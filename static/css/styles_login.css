@@ -4,14 +4,18 @@ body {
 	padding: 50px;
 }
 
+.control-group {
+	margin-bottom: 20px;
+}
+
 .login {
-margin: 20px auto;
-width: 300px;
+	margin: 40px auto;
+	width: 300px;
 }
 
 .login-screen {
-padding: 20px;
-border-radius: 5px
+	padding: 20px;
+	border-radius: 5px
 }
 
 .app-title {
@@ -19,7 +23,7 @@ border-radius: 5px
 }
 
 .login-form {
-text-align: center;
+	text-align: center;
 }
 
 input {
@@ -40,8 +44,8 @@ input:focus {
 }
 
 .login-link {
-font-size: 12px;
-color: #444;
-display: block;
-margin-top: 12px;
+	font-size: 12px;
+	color: #444;
+	display: block;
+	margin-top: 12px;
 }

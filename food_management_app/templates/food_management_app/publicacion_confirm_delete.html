@@ -13,7 +13,7 @@
 		{% csrf_token %}
 		<p>Quieres eliminar la publicacion?</p>
 		<input type="submit" value="Sí, si quiero" class="btn btn-danger">
-		<a href="{% url 'publicacion:lista' %}" class="btn btn-primary ">Mejor no</a>
+		<a href="javascript: history.back()" class="btn btn-primary ">Mejor no</a>
 	</form>
 {% endblock contenido %}
 

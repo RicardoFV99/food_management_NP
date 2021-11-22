@@ -29,8 +29,8 @@
 		<p>¿Estoy visible?: No</p>
 	{% endif %}
 
-	<a href="{% url 'organizacion:editar' request.user.id %}" class="btn btn-secondary">Editar</a>
-	<a href="{% url 'organizacion:pdf_datos_org' request.user.id %}" class="btn btn-secondary">PDF</a>
+	<a href="{% url 'organizacion:editar' %}" class="btn btn-secondary">Editar</a>
+	<a href="{% url 'organizacion:pdf_datos_org' %}" class="btn btn-secondary">PDF</a>
 
 
 {% endblock contenido %}

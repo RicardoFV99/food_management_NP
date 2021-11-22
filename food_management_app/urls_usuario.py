@@ -5,9 +5,9 @@ from . import views
 app_name = 'usuario'
 
 urlpatterns = [
-	path('ver/<int:pk>', views.UsuarioVer.as_view(), name='ver'),
-	path('editar/<int:pk>', views.UsuarioEditar.as_view(), name='editar'),
-	path('eliminar/<int:pk>', views.UsuarioEliminar.as_view(), name='eliminar'),
+	path('mi-perfil/', views.UsuarioVer.as_view(), name='ver'),
+	path('editar-perfil/', views.UsuarioEditar.as_view(), name='editar'),
+	path('eliminar-cuenta/', views.UsuarioEliminar.as_view(), name='eliminar'),
 ]
 
 # Copyright: Null Pointers 2021

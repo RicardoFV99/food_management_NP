@@ -12,4 +12,6 @@ urlpatterns = [
 	path('publicacion/', include('food_management_app.urls_publicacion')),
 ] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
 
+handler404 = 'food_management_app.views.error_404'
+
 # Copyright: Null Pointers 2021

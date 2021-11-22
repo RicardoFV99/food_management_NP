@@ -5,6 +5,8 @@ from django.urls import reverse_lazy
 from django.views.generic import ListView, DetailView
 from django.views.generic.edit import CreateView, DeleteView, UpdateView
 from django_weasyprint import WeasyTemplateResponseMixin
+from django.contrib.auth.mixins import PermissionRequiredMixin, LoginRequiredMixin, AccessMixin
+from django.contrib.auth.models import Group 
 
 
 from .models import Usuario, Organizacion, Publicacion
@@ -14,10 +16,13 @@ from .forms import UsuarioCreateForm, UsuarioUpdateForm, OrganizacionCreateForm,
 def landing_page(request):
 	return render(request, 'landing_page.html', {})
 
-def home(request):
-	publicaciones = Publicacion.objects.all()
+def home(LoginRequiredMixin, request):
+	publicaciones = Publicacion.objects.order_by('-fecha_hora')
 
 	return render(request, 'home.html', {'publicaciones': publicaciones})
+
+def error_404(request, exception):
+    return render(request, '404.html', {})
 
 
 #############################
@@ -38,14 +43,14 @@ def signin(request):
 
 		if form.is_valid():
 			form.save()
-			return render(request, 'login.html', {})
+			return redirect('login')
 
 	return render(request, 'signin.html', {})
 
 class UpdatePassword(PasswordChangeView):
 	form_class = PasswordChangeForm
-	success_url = reverse_lazy('logout')
 	template_name = 'food_management_app/change-password.html'
+	success_url = reverse_lazy('home')
 
 
 #############################
@@ -53,17 +58,32 @@ class UpdatePassword(PasswordChangeView):
 #############################
 
 
-class UsuarioVer(DetailView):
+class UsuarioVer(LoginRequiredMixin, DetailView):
 	model = Usuario
 
-class UsuarioEditar(UpdateView):
+	def get_object(self, queryset=None):
+		pk = self.request.user.username
+		obj = Usuario.objects.get(username=pk)
+		return obj
+
+class UsuarioEditar(LoginRequiredMixin, UpdateView):
 	model = Usuario
 	form_class = UsuarioUpdateForm
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('usuario:ver')
 
-class UsuarioEliminar(DeleteView):
+	def get_object(self, queryset=None):
+		pk = self.request.user.username
+		obj = Usuario.objects.get(username=pk)
+		return obj
+
+class UsuarioEliminar(LoginRequiredMixin, DeleteView):
 	model = Usuario
 	success_url = reverse_lazy('landing_page')
+
+	def get_object(self, queryset=None):
+		pk = self.request.user.username
+		obj = Usuario.objects.get(username=pk)
+		return obj
 
 
 #############################
@@ -71,17 +91,32 @@ class UsuarioEliminar(DeleteView):
 #############################
 
 
-class OrganizacionVer(DetailView):
+class OrganizacionVer(LoginRequiredMixin, DetailView):
 	model = Organizacion
 
-class OrganizacionEditar(UpdateView):
+	def get_object(self, queryset=None):
+		pk = self.request.user.username
+		obj = Organizacion.objects.get(username=pk)
+		return obj
+
+class OrganizacionEditar(LoginRequiredMixin, UpdateView):
 	model = Organizacion
 	form_class = OrganizacionUpdateForm
-	success_url = reverse_lazy('home')
+	success_url = reverse_lazy('organizacion:ver')
 
-class OrganizacionEliminar(DeleteView):
+	def get_object(self, queryset=None):
+		pk = self.request.user.username
+		obj = Organizacion.objects.get(username=pk)
+		return obj
+
+class OrganizacionEliminar(LoginRequiredMixin, DeleteView):
 	model = Organizacion
 	success_url = reverse_lazy('logout')
+
+	def get_object(self, queryset=None):
+		pk = self.request.user.username
+		obj = Organizacion.objects.get(username=pk)
+		return obj
      
 class DatosOrganizacionPDF(DetailView):
     model = Organizacion
@@ -91,27 +126,44 @@ class PdfDetallesOrganizacion(WeasyTemplateResponseMixin, DatosOrganizacionPDF):
     pdf_attachment = False
     pdf_filename = 'food_management_app/organizacion_detail.html.pdf'
 
+
 #############################
 #        PUBLICACION        #
 #############################
 
 
-class PublicacionNueva(CreateView):
+# perms.food_management_app.permiso_organizaciones
+class PublicacionNueva(PermissionRequiredMixin, CreateView):
+	permission_required = 'food_management_app.permiso_organizaciones'
 	model = Publicacion
 	form_class = PublicacionCreateForm
 	success_url = reverse_lazy('home')
+
+	extra_context = {
+		'etiqueta': 'Crear',
+		'boton': 'Publicar'
+	}
 
 	def form_valid(self, form):
 		usuario = get_object_or_404(Organizacion, id=self.request.user.id)
 		form.instance.usuario = usuario
 		return super().form_valid(form)
 
-class PublicacionEditar(UpdateView):
+# perms.food_management_app.permiso_organizaciones
+class PublicacionEditar(PermissionRequiredMixin, UpdateView):
+	permission_required = 'food_management_app.permiso_organizaciones'
 	model = Publicacion
 	form_class = PublicacionUpdateForm
 	success_url = reverse_lazy('home')
 
-class PublicacionEliminar(DeleteView):
+	extra_context = {
+		'etiqueta': 'Editar',
+		'boton': 'Guardar Cambios'
+	}
+
+# perms.food_management_app.permiso_organizaciones
+class PublicacionEliminar(PermissionRequiredMixin, DeleteView):
+	permission_required = 'food_management_app.permiso_organizaciones'
 	model = Publicacion
 	success_url = reverse_lazy('home')
 

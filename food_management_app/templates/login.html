@@ -8,8 +8,10 @@
 	<meta http-equiv="X-UA-Compatible" content="IE=edge">
 	<meta name="viewport" content="width=device-width, initial-scale=1.0">
 
+	<link rel="shortcut icon" href="{% static 'favicon.svg' %}">
+
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles.css' %}">
-	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles_login.css' %}">
 
 	<title>Inicio de Sesi&oacute;n</title>
 </head>
@@ -18,7 +20,7 @@
 
 	{% if form.errors %}
 		<div class="alert alert-warning">
-			<span>El usuario o contraseña no es correcto</span>
+			<span>El usuario o contrase&ntilde;a no es correcto</span>
 		</div>
 	{% endif %}
 
@@ -41,18 +43,16 @@
 				<form method="POST">
 					{% csrf_token %} 
 					<div class="control-group">
-						<input name="username" type="text" class="login-field" value="" placeholder="Usuario" id="id_username">
-						<label class="login-field-icon fui-user" for="login-name"></label>
+						<input name="username" type="email" class="login-field form-control" value="" placeholder="Correo Electr&oacute;nico" id="id_username">
 					</div>
 
 					<div class="control-group">
-						<input name="password" type="password" class="login-field" value="" placeholder="Contrase&ntilde;a" id="id_password">
-						<label class="login-field-icon fui-lock" for="login-pass"></label>
+						<input name="password" type="password" class="login-field form-control" value="" placeholder="Contrase&ntilde;a" id="id_password">
 					</div>
 
-					<div style="display: flex;">
-						<a class="btn btn-outline-primary" href="{% url 'signin' %}">Crear Cuenta</a>
-						<button type="submit" class="btn btn-primary btn-large btn-block">Ingresar</button>
+					<div>
+						<button type="submit" class="btn btn-primary btn-large">Ingresar</button><br>
+						<a class="btn btn-outline-primary btn-large" href="{% url 'signin' %}" style="margin-top: 1.5em;">Crear Cuenta</a>
 					</div>
 				</form>
 			</div>

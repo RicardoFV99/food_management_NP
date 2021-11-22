@@ -3,21 +3,28 @@
 
 
 {% block titulo %}
-	Lista de Organizaciones
+	Home
 {% endblock titulo %}
 
 {% block css %}
-	<link id="theme-style" rel="stylesheet" href="{% static 'css/custom.css' %}">
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles.css' %}">
 {% endblock css %}
 
 {% block contenido %}
-	<a href="{% url 'publicacion:nuevo' %}" class="btn btn-primary" style="border-radius: 100%; position: absolute; right: 1em; top: 1em; width: 3em; height: 3em; padding: 10px; color: #FFF; font-weight: bold;">+</a>
+	{% if perms.food_management_app.permiso_organizaciones %}
+	<a href="{% url 'publicacion:nuevo' %}" class="btn btn-primary" style="position: absolute; right: 1em; top: 1em; padding: 10px; color: #FFF; font-weight: bold;"><i class="fa fa-plus"></i> Publicar</a>
+	{% endif %}
 
 	{% for publicacion in publicaciones %}
-		<div class="containerPublicacion">
-			<p>{{publicacion.fecha_hora}}</p>
-			<p>{{publicacion.usuario}}</p>
-			<p>{{publicacion.contenido}}</p>
+		<div class="container-publicacion">
+			{% if publicacion.usuario.foto %}
+			<!-- Foto de Perfil -->
+			{% else %}
+			<img src="{% static 'images/photo_placeholder.png' %}" alt="Foto de Perfil" style="border-radius: 50%;  max-width: 50px;">
+			{% endif %}
+			<p style="float: right; margin-right: 10px;">{{publicacion.fecha_hora}}</p>
+			<p style="display: contents;">{{publicacion.usuario.first_name}}</p>
+			<p style="margin-top:10px;">{{publicacion.contenido}}</p>
 		</div>
 	{% endfor %}
 

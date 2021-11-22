@@ -25,10 +25,10 @@
 		<br>
 		{% endfor %}
 		<a href="{% url 'update_password' %}" class="btn btn-warning">Cambiar Contrase&ntilde;a</a>
-		<a href="{% url 'organizacion:eliminar' user.id %}" class="btn btn-danger">Eliminar Cuenta</a>
-		<a href="{% url 'organizacion:ver' user.id %}" class="btn btn-primary">Regresar</a>
-		
-		<button type="submit" class="btn btn-success" style="float: right;">Guardar</button>
+		<a href="{% url 'organizacion:eliminar' %}" class="btn btn-danger">Eliminar Cuenta</a>
+
+		<a href="javascript: history.back()" class="btn btn-info" style="float: right;">Regresar</a>
+		<button type="submit" class="btn btn-success" style="float: right; margin-right: 10px;">Guardar</button>
 		
 	</form>
 {% endblock contenido %}

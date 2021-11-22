@@ -12,8 +12,10 @@
 
 	<script defer src="{% static 'js/all.min.js' %}"></script>
 
+	<link rel="shortcut icon" href="{% static 'favicon.svg' %}">
+
+	<link id="theme-style" rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
 	<link id="theme-style" rel="stylesheet" href="{% static 'css/styles.css' %}">
-	<link id="theme-style" rel="stylesheet" href="{% static 'css/custom.css' %}">
 
 	<title>
 		{% block titulo %}
@@ -35,7 +37,7 @@
 
 			<a class="app-logo" href="{% url 'home' %}"><img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="Food Management"></a>
 
-			<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1">
+			<nav id="app-nav-main" class="app-nav app-nav-main flex-grow-1" style="padding-top: 10px;">
 				<ul class="app-menu list-unstyled accordion" id="menu-accordion">
 					<li class="nav-item">
 						<a class="nav-link" href="{% url 'home' %}">
@@ -43,10 +45,23 @@
 							<span class="nav-link-text"> Inicio</span>
 						</a>
 					</li>
+					
 					<li class="nav-item">
-						<a class="nav-link" href="{% url 'organizacion:ver' request.user.id %}">
+						{% if perms.food_management_app.permiso_organizaciones %}
+						<a class="nav-link" href="{% url 'organizacion:ver' %}">
+							<i class="fa fa-building"></i>
+						{% else %}
+						<a class="nav-link" href="{% url 'usuario:ver' %}">
 							<i class="fa fa-user-circle"></i>
+						{% endif %}
 							<span class="nav-link-text"> Mi Perfil</span>
+						</a>
+					</li>
+
+					<li class="nav-item" style="position: absolute; bottom: 10px;">
+						<a class="nav-link" href="{% url 'logout' %}">
+							<i class="fa fa-door-open"></i>
+							<span class="nav-link-text"> Cerrar Sesión</span>
 						</a>
 					</li>
 				</ul>

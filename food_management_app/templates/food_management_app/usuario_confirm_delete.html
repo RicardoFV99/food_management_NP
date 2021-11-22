@@ -11,9 +11,9 @@
 {% block contenido %}
 	<form method="post">
 		{% csrf_token %}
-		<p>Quieres eliminar a el usuario "{{ object }}"?</p>
+		<p>¿Quieres eliminar a el usuario "{{ object }}"?</p>
 		<input type="submit" value="Sí, si quiero" class="btn btn-danger">
-		<a href="{% url 'usuario:editar' user.id %}" class="btn btn-primary ">Mejor no</a>
+		<a href="{% url 'usuario:editar' %}" class="btn btn-primary ">Mejor no</a>
 	</form>
 {% endblock contenido %}
 

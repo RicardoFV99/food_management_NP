@@ -46,10 +46,10 @@ class UsuarioUpdateForm(forms.ModelForm):
 		fields = ('first_name', 'last_name', 'email', 'cp')
 
 		widgets = {
-			'username': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'last_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'cp': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
+			'first_name': forms.TextInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'last_name': forms.TextInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'email': forms.EmailInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'cp': forms.NumberInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
 		}
 
 		labels = {
@@ -58,6 +58,15 @@ class UsuarioUpdateForm(forms.ModelForm):
 			'email': 'Correo Electrónico',
 			'cp': 'Código Postal',
 		}
+	
+	def save(self, commit=True):
+		user = super(UsuarioUpdateForm, self).save(commit=False)
+		user.username = user.email
+
+		if commit:
+			user.save()
+
+		return user
 
 
 class OrganizacionCreateForm(forms.ModelForm):
@@ -105,12 +114,12 @@ class OrganizacionUpdateForm(forms.ModelForm):
 		fields = ('first_name', 'email', 'direccion', 'cp' , 'telefono', 'pagina_web')
 
 		widgets = {
-			'first_name': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'email': forms.EmailInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'direccion': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'cp': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'telefono': forms.NumberInput(attrs={'class': 'form-control', 'placeholder': 'Obligatorio'}),
-			'pagina_web': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Página Web'}),
+			'first_name': forms.TextInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'email': forms.EmailInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'direccion': forms.TextInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'cp': forms.NumberInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'telefono': forms.NumberInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Obligatorio'}),
+			'pagina_web': forms.TextInput(attrs={'class': 'form-control form-control-edit', 'placeholder': 'Página Web'}),
 		}
 
 		labels = {
@@ -132,7 +141,7 @@ class PublicacionCreateForm(forms.ModelForm):
 
 		widgets = {
 			'usuario': forms.Select(attrs={'hidden': True}),
-			'contenido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contenido de la publicación...'})
+			'contenido': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido de la publicación...'})
 		}
 
 class PublicacionUpdateForm(forms.ModelForm):
@@ -143,7 +152,7 @@ class PublicacionUpdateForm(forms.ModelForm):
 		fields = ('contenido', )
 
 		widgets = {
-			'contenido': forms.TextInput(attrs={'class': 'form-control', 'placeholder': 'Contenido de la publicación...'})
+			'contenido': forms.Textarea(attrs={'class': 'form-control', 'placeholder': 'Contenido de la publicación...'})
 		}
 
 #class OrganizacionContra(forms.ModelForm):

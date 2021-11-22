@@ -10,23 +10,21 @@
 
 
 {% block contenido %}
-	<h1>Editar Perfil</h1>
-
 	{% if object.foto %}
 	<!-- Foto desde Media -->
 	{% else %}
 	<img src="{% static 'images/photo_placeholder.png' %}" alt="Foto de Perfil" style="border-radius: 50%; float: right; max-width: 150px;">
 	{% endif%}
 
+	<h1>Editar Perfil</h1>
+
 	<form method="post">
 		{% csrf_token %}
-		{% for field in form %}
-		{{field}}
-		<br>
-		{% endfor %}
+		{{form.as_p}}
 		<a href="{% url 'update_password' %}" class="btn btn-success">Cambiar Contrase&ntilde;a</a>
-		<a href="{% url 'usuario:eliminar' user.id %}" class="btn btn-danger">Eliminar Cuenta</a>
-		<button type="submit" class="btn btn-success" style="float: right;">Guardar</button>
+		<a href="{% url 'usuario:eliminar' %}" class="btn btn-danger">Eliminar Cuenta</a>
+		<a href="javascript: history.back()" class="btn btn-info" style="float: right;">Regresar</a>
+		<button type="submit" class="btn btn-success" style="float: right; margin-right: 10px;">Guardar</button>
 		
 	</form>
 {% endblock contenido %}

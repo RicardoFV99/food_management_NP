@@ -32,9 +32,9 @@ SECRET_KEY = 'django-insecure-#hjr^d#64v(0pioanpvq+u=m9dd$62*(*zv10#4v10)piw)cn3
 #
 
 # SECURITY WARNING: don't run with debug turned on in production!
-DEBUG = True
+DEBUG = False
 
-ALLOWED_HOSTS = ['*']
+ALLOWED_HOSTS = ['127.0.0.1', 'localhost', '192.168.33.10', 'food-management-np.herokuapp.com']
 
 
 # Application definition
@@ -85,20 +85,31 @@ WSGI_APPLICATION = 'food_management.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/3.2/ref/settings/#databases
 
-DATABASES = {
-    'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
-    }
-    #'default': {
-    #    'ENGINE': 'django.db.backends.mysql',
-    #    'NAME': 'food_management',
-    #    'USER': 'fooduser',
-    #    'PASSWORD': 'Contraseña7654/(%&/',
-    #    'HOST': 'localhost',
-    #    'PORT': 3306
-    #}
-}
+db = False
+
+if DEBUG:
+    if db: # Para que Ricardo pueda usar MySQL
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.mysql',
+                'NAME': 'food_management',
+                'USER': 'fooduser',
+                'PASSWORD': 'Contraseña7654/(%&/',
+                'HOST': 'localhost',
+                'PORT': 3306
+            }
+        }
+    else:
+        DATABASES = {
+            'default': {
+                'ENGINE': 'django.db.backends.sqlite3',
+                'NAME': BASE_DIR / 'db.sqlite3',
+            }
+        }
+else:
+    DATABASES = {
+        'default': dj_database_url.config(default=config('DATABASE_URL'))
+    }    
 
 
 # Password validation
@@ -168,9 +179,11 @@ EMAIL_HOST_USER = 'email.for.testing.7357@gmail.com'
 EMAIL_HOST_PASSWORD = 'emailfortesting7357'
 EMAIL_PORT = 587
 
-# Activate Django-Heroku.
-#django_heroku.settings(locals())
-#STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
+# Activar Django-Heroku.
+
+if not DEBUG:
+    django_heroku.settings(locals())
+    STATICFILES_STORAGE = 'django.contrib.staticfiles.storage.StaticFilesStorage'
 
 
 # Copyright: Null Pointers 2021

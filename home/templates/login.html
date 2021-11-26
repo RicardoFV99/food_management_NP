@@ -1,0 +1,91 @@
+<!--
+	Archivo: login.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar una pantalla de
+		inicio de sesión para utilizar el
+		sistema.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-mx">
+
+<head>
+
+	{% if request.user.is_authenticated %}
+	<meta http-equiv="refresh" content="0; url={% url 'home:home' %}">
+	{% endif %}
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- FontAwesome JS-->
+	<script defer src="{% static 'js/all.min.js' %}"></script>
+
+	<link rel="shortcut icon" href="{% static 'favicon.svg' %}">
+
+	<!-- Bootstrap CSS -->  
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+	<title>Inicio de Sesi&oacute;n</title>
+
+</head>
+
+<body>
+
+	{% if form.errors %}
+		<div class="alert alert-warning">
+			<span>El usuario o contrase&ntilde;a no es correcto</span>
+		</div>
+	{% endif %}
+
+	{% if messages %}
+		{% for message  in messages %}
+			<div class="alert alert-{% if message.tags == 'error'%}danger{%else%}success{%endif%}">
+				{{message}}
+			</div>
+		{% endfor %}
+	{% endif %}
+
+	<div class="login">
+
+		<div class="app-title">
+			<img class="img-fluid" src="{% static 'images/logo-text.svg' %}" alt="Food Management">
+		</div>
+	
+		<div class="login-form">
+			<form method="POST">
+				{% csrf_token %} 
+				<div class="control-group">
+					<input name="username" type="email" class="login-field form-control" value="" placeholder="Correo Electr&oacute;nico" id="id_username">
+				</div>
+
+				<div class="control-group">
+					<input name="password" type="password" class="login-field form-control" value="" placeholder="Contrase&ntilde;a" id="id_password">
+				</div>
+
+				<div>
+					<button type="submit" class="btn btn-primary btn-large" style="margin-bottom: 1.5em;">Ingresar</button><br>
+					<span>¿No tienes cuenta? <a href="{% url 'home:signin' %}" >Crea una Cuenta</a></span>
+				</div>
+			</form>
+		</div>
+
+	</div>
+
+</body>
+
+</html>
+
+<!-- Copyright: Null Pointers 2021 -->

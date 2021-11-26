@@ -1,0 +1,37 @@
+<!--
+	Archivo: organizacion_detail.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página en donde
+		se muestra la información de un usuario
+		del tipo "organización".
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Organizaci&oacute;n: {{organizacion.first_name}}
+{% endblock title %}
+
+{% block body %}
+<h1>Organizaci&oacute;n: {{organizacion.first_name}}</h1>
+
+<p>Correo Electr&oacute;nico: {{organizacion.email}}</p>
+<p>Direcci&oacute;n: {{organizacion.direccion}}</p>
+<p>C&oacute;digo Postal: {{organizacion.codigo_postal}}</p>
+<p>Sitio Web: <a href="http://{{organizacion.pagina_web}}">{{organizacion.pagina_web}}</a></p>
+<p>Tel&eacute;fono: <a href="tel:{{organizacion.telefono}}">{{organizacion.telefono}}</a></p>
+
+<a class="btn btn-secondary" href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Regresar</a>
+
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021-->

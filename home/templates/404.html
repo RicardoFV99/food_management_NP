@@ -1,0 +1,28 @@
+<!--
+	Archivo: 404.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar una pantalla de
+		error 404 en el sistema.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<h1>Error 404: No se encontró la p&aacute;gina especificada.</h1>
+
+<img class="error-img" src="{% static 'images/cheems_404.png' %}" alt="404">
+
+{% endblock body %}
+
+
+<!-- Copyright: Null Pointers 2021 -->

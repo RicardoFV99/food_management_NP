@@ -1,0 +1,28 @@
+<!--
+	Archivo: 500.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar una pantalla de
+		error 500 en el sistema.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block body %}
+
+<h1>Error 500: Hubo un error interno mientras se realizaba tu petici&oacute;n.</h1>
+<h2>Por favor contacta al administrador para resolver este problema.</h2>
+
+<img class="error-img" src="{% static 'images/cheems_500.png' %}" alt="500">
+
+{% endblock body%}
+
+<!-- Copyright: Null Pointers 2021 -->

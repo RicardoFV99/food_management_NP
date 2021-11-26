@@ -1,0 +1,45 @@
+<!--
+	Archivo: publicacion_list.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página que
+		contiene una lista de las publicaciones
+		realizadas por la organización.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Mis Publicaciones
+{% endblock title %}
+
+{% block body %}
+<h1>Mis Publicaciones:</h1>
+
+<table class="table table-fluid">
+	<tbody>
+		{% for publicacion in publicaciones %}
+		<tr>
+			<td>{{publicacion.contenido}}</td>
+			<td>{{publicacion.fecha_hora_publicacion}}</td>
+			<td>
+				<a class="btn btn-primary btn-small" href="{% url 'publicaciones:editar' publicacion.id %}"><i class="fa fa-pen"></i> Editar</a>
+				<a class="btn btn-danger btn-small" href="{% url 'publicaciones:eliminar' publicacion.id %}"><i class="fa fa-trash"></i> Eliminar</a>
+			</td>
+		</tr>
+		{% endfor %}
+	</tbody>
+</table>
+
+
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021 -->

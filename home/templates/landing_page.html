@@ -1,0 +1,60 @@
+<!--
+	Archivo: landing_page.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página que se
+		muestra al entrar al sistema sin tener
+		una sesión iniciada.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% load static %}
+
+<!DOCTYPE html>
+<html lang="es-mx">
+
+<head>
+
+	<meta charset="UTF-8">
+	<meta http-equiv="X-UA-Compatible" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+	<!-- FontAwesome JS-->
+	<script defer src="{% static 'js/all.min.js' %}"></script>
+
+	<link rel="shortcut icon" href="{% static 'favicon.svg' %}">
+
+	<!-- Bootstrap CSS -->  
+	<link rel="stylesheet" href="{% static 'css/bootstrap.css' %}">
+	<link rel="stylesheet" href="{% static 'css/styles.css' %}">
+
+	<title>Food Management &copy;</title>
+
+</head>
+
+<body>
+
+	<header  id="app-sidepanel" class="app-sidepanel" style="border-right: none;">
+		<div class="sidepanel-inner d-flex flex-column" style="background: none; box-shadow: none;">
+			<img class="img-fluid" src="{% static 'images/logo.svg' %}" alt="Food Management Logo" style="margin-left: -1px;">
+		</div>
+	</header>
+
+	<a href="{% url 'home:login' %}" id="btn-login-landing-page" class="btn btn-primary">Iniciar Sesi&oacute;n</a>
+
+	<div class="parent container d-flex justify-content-center align-items-center h-100" style="display: grid !important; min-height: 100vh;">
+		<img class="img-responsive" height="470px" width="470px" src="{% static 'images/landing-page-001.png' %}" alt="" style="border-radius: 50%;">
+		<h3 style="font-weight: bold ; font-family: sans-serif; font-size: 42px; text-align: center;"><i>¡Tira menos y ayuda<br>a más gente!</i></h3>
+	</div>
+
+</body>
+
+</html>
+
+<!-- Copyright: Null Pointers -->

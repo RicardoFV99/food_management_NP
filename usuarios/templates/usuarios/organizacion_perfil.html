@@ -1,0 +1,39 @@
+<!--
+	Archivo: organizacion_perfil.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página que se
+		muestra para ver la información de un
+		usuario del tipo "organización".
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Mi Perfil
+{% endblock title %}
+
+{% block body %}
+<h1>Mi Perfil: {{organizacion.first_name}}</h1>
+
+<p>Correo Electr&oacute;nico: {{organizacion.email}}</p>
+<p>Direcci&oacute;n: {{organizacion.direccion}}</p>
+<p>C&oacute;digo Postal: {{organizacion.codigo_postal}}</p>
+<p>Sitio Web: <a href="http://{{organizacion.pagina_web}}">{{organizacion.pagina_web}}</a></p>
+<p>Tel&eacute;fono: <a href="tel:{{organizacion.telefono}}">{{organizacion.telefono}}</a></p>
+
+<a class="btn btn-primary" href="{% url 'usuarios:organizacion-editar-perfil' %}"><i class="fa fa-pen"></i> Editar Perfil</a>
+<a class="btn btn-warning" href="{% url 'usuarios:cambiar-contrasena' %}"><i class="fa fa-exclamation-triangle"></i> Cambiar Contraseña</a>
+<a class="btn btn-danger" href="{% url 'usuarios:organizacion-eliminar-cuenta' %}"><i class="fa fa-trash"></i> Eliminar Cuenta</a>
+
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021-->

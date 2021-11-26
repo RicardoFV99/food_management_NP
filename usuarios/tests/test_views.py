@@ -1,11 +1,11 @@
+# -*- coding: UTF-8 -*-
 #-----------------------------------------------------
-# Archivo: .gitignore
+# Archivo: test_views.py
 #
 # Descripción:
-#    El archivo contiene las declaraciones
-#    de archivos que tienen que ser omitidos
-#    al momento de interactuar con el
-#    repositorio de Git.
+#    El archivo contiene las pruebas para
+#    probar el correcto funcionamiento de
+#    las vistas de la aplicación usuarios.
 #
 # Equipo:
 #    - Isaac Alejandro Díaz López
@@ -14,14 +14,5 @@
 #    - Kevin Javier Reyes Medina
 #
 #-----------------------------------------------------
-
-
-# Python's Cache
-__pycache__/
-
-# Django Database
-db.sqlite3
-migrations/
-
 
 # Copyright: Null Pointers 2021

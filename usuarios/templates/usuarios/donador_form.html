@@ -1,0 +1,35 @@
+<!--
+	Archivo: donador_form.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página que se
+		muestra para editar la información de un
+		usuario del tipo "donador".
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Editar Perfil
+{% endblock title %}
+
+{% block body %}
+<h1>Editar Perfil</h1>
+
+<form method="POST">
+	{% csrf_token %}
+	{{form.as_p}}
+	<button class="btn btn-primary" type="submit"><i class="fa fa-save"></i> Guardar</button>
+	<a class="btn btn-secondary" href="javascript:history.back()"><i class="fa fa-arrow-left"></i> Regresar</a>
+</form>
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021 -->

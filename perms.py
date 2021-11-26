@@ -1,36 +1,84 @@
+# -*- coding: UTF-8 -*-
+#-----------------------------------------------------
+# Archivo: perms.py
+#
+# Descripción:
+#    El archivo contiene un script para crear los
+#    grupos y permisos de la aplicación, además
+#    de crear un super usuario para administrar los
+#    datos.
+#
+# Equipo:
+#    - Isaac Alejandro Díaz López
+#    - Ricardo Flores Vázquez
+#    - Erick Alexandro Pinalez Gonzáles
+#    - Kevin Javier Reyes Medina
+#
+#-----------------------------------------------------
+
+
 import os
 import django
 
 os.environ.setdefault('DJANGO_SETTINGS_MODULE', 'food_management.settings')
 django.setup()
 
-from django.contrib.auth.models import Permission, Group
+from django.contrib.auth.models import Group, Permission, User
 from django.contrib.contenttypes.models import ContentType
 
-from food_management_app.models import Usuario, Organizacion
+from usuarios.models import Organizacion
 
-grupo_organizaciones = Group.objects.create(name='organizaciones')
-grupo_usuarios = Group.objects.create(name='usuarios')
+# Se crea el grupo para las organizaciones.
+organizaciones = Group.objects.create(name='Organizaciones')
 
-content_type = ContentType.objects.get_for_model(Usuario)
-permiso_usuarios = Permission.objects.create(
-    codename = 'permiso_usuarios',
-    name = 'Permiso requerido para el grupo usuarios',
-    content_type = content_type
+# Se crea el permiso para crear publicaciones.
+crear_publicaciones = Permission.objects.create(
+	codename = 'crear_publicaciones',
+	name = 'Crear Publicaciones',
+	content_type = ContentType.objects.get_for_model(Organizacion)
 )
 
-content_type2 = ContentType.objects.get_for_model(Organizacion)
-permiso_organizaciones = Permission.objects.create(
-    codename = 'permiso_organizaciones',
-    name = 'Permiso requerido para el grupo de organizaciones',
-    content_type = content_type2
+# Se crea el permiso para editar publicaciones.
+editar_publicaciones = Permission.objects.create(
+	codename = 'editar_publicaciones',
+	name = 'Editar Publicaciones',
+	content_type = ContentType.objects.get_for_model(Organizacion)
 )
 
-grupo_usuarios.permissions.add(permiso_usuarios)
-grupo_organizaciones.permissions.add(permiso_organizaciones)
+# Se crea el permiso para eliminar publicaciones.
+eliminar_publicaciones = Permission.objects.create(
+	codename = 'eliminar_publicaciones',
+	name = 'Eliminar Publicaciones',
+	content_type = ContentType.objects.get_for_model(Organizacion)
+)
 
-organizacion = Organizacion.objects.create_user(first_name='Comex_org', username="comex_org@comex.com", email= 'comex_org@comex.com', password='comex', direccion="Comex", cp=98080, telefono=1231234123)
-organizacion.groups.add(grupo_organizaciones)
-usuario = Usuario.objects.create_user(first_name='Comex_user', username="comex_usr@comex.com", email='comex_usr@gmail.com', password='comex', cp=99990)
-usuario.groups.add(grupo_usuarios)
-Usuario.objects.create_superuser(first_name='admin', username="admin", email="admin@admin.com", password='admin', cp=99990)
+#Se agregan los permisos al grupo de organizaciones.
+organizaciones.permissions.add(crear_publicaciones)
+organizaciones.permissions.add(editar_publicaciones)
+organizaciones.permissions.add(eliminar_publicaciones)
+
+# Se crea una organización por defecto.
+organizacion = Organizacion.objects.create(
+	first_name = 'Comex',
+	username = 'ventas@comex.com',
+	email =  'ventas@comex.com',
+	password = 'ventas_comex',
+	direccion = 'Avenida Heroico Colegio Militar 74, Guadalupe Centro',
+	codigo_postal = 98600,
+	telefono = 4928995961
+)
+
+# Se le asigna el grupo a la organizacion recién creada.
+organizacion.groups.add(organizaciones)
+
+# Se crea un superuser por cada integrante del equipo en la aplicación.
+# Isaac Alejandro Díaz López
+User.objects.create_superuser(username='34154287', email='34154287@uaz.edu.mx', password='34154287')
+# Ricardo Flores Vázquez
+User.objects.create_superuser(username='35166006', email='35166006@uaz.edu.mx', password='35166006')
+# Erick Alexandro Pinales González
+User.objects.create_superuser(username='38192828', email='38192828@uaz.edu.mx', password='38192828')
+# Kevin Javier Reyes Medina
+User.objects.create_superuser(username='38192831', email='38192831@uaz.edu.mx', password='38192831')
+
+# Copyright: Null Pointers 2021

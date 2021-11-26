@@ -1,0 +1,32 @@
+<!--
+	Archivo: organizacion_confirm_delete.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página en donde
+		se confirme la eliminación de la cuenta
+		de organizacion del usuario.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+
+{% block title %}
+	Eliminar Cuenta
+{% endblock title %}
+	
+{% block body %}
+	<form method="post">
+		{% csrf_token %}
+		<p>¿Estás seguro que quieres eliminar tu cuenta?</p>
+		<input type="submit" value="Sí, si quiero" class="btn btn-danger">
+		<a href="{% url 'usuarios:donador-mi-perfil' %}" class="btn btn-primary ">Mejor no</a>
+	</form>
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021 -->

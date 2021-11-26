@@ -1,0 +1,31 @@
+<!--
+	Archivo: publicación_detail.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página en donde
+		se muestra la información de una publicación.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+Detalles Publicaci&oacute; de {{publicacion.usuario.first_name}}
+{% endblock title %}
+
+{% block body %}
+
+<p>{{publicacion.fecha_hora_publicacion}}</p>
+<p>{{publicacion.contenido}}</p>
+
+<a class="btn btn-primary" href="javascript: history.back()"><i class="fa fa-arrow-left"></i> Regresar</a>
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021 -->

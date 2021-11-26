@@ -1,0 +1,52 @@
+<!--
+	Archivo: home.html
+
+	Descripción:
+		El archivo contiene todo el código html
+		necesario para mostrar la página principal
+		del sistema.
+
+	Equipo:
+		- Isaac Alejandro Díaz López
+		- Ricardo Flores Vázquez
+		- Erick Alexandro Pinalez Gonzáles
+		- Kevin Javier Reyes Medina
+-->
+
+{% extends 'base.html' %}
+{% load static %}
+
+{% block title %}
+P&aacute;gina Principal
+{% endblock title %}
+
+{% block body %}
+
+{% if 'Organizaciones' == request.user.groups.first.name %}
+<a href="{% url 'publicaciones:publicar' %}" class="btn btn-primary" style="position: absolute; right: 1em; top: 1em; padding: 10px; color: #FFF; font-weight: bold;"><i class="fa fa-plus"></i> Publicar</a>
+{% endif %}
+
+{% for publicacion in publicaciones %}
+
+	<div class="container-publicacion">
+		{% if publicacion.usuario.foto %}
+		<!-- Foto de Perfil -->
+		{% else %}
+		<img src="{% static 'images/user-profile-placeholder.png' %}" alt="Foto de Perfil" style="border-radius: 50%;  max-width: 50px;">
+		{% endif %}
+		<p style="float: right; margin-right: 10px;">{{publicacion.fecha_hora_publicacion}}</p>
+		<p style="display: contents;"><a href="{% url 'usuarios:organizacion-ver' publicacion.usuario.id %}">{{publicacion.usuario.first_name}}</a></p>
+		<p style="margin-top:10px;">{{publicacion.contenido}}</p>
+	</div>
+{% endfor %}
+
+<script>
+	app_content = document.getElementsByClassName('app-content');
+
+	app_content[0].style.background = "none";
+	app_content[0].style.border= "none";
+</script>
+
+{% endblock body %}
+
+<!-- Copyright: Null Pointers 2021 -->

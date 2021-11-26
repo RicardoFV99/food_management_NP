@@ -1,17 +1,34 @@
-from django.contrib import admin
-from django.urls import path, include
-from django.conf import settings
+# -*- coding: UTF-8 -*-
+#-----------------------------------------------------
+# Archivo: urls.py
+#
+# Descripción:
+#    El archivo contiene las direcciones globales del
+#    proyecto para que se pueda navegar de manera
+#    correcta en el sistema.
+#
+# Equipo:
+#    - Isaac Alejandro Díaz López
+#    - Ricardo Flores Vázquez
+#    - Erick Alexandro Pinalez Gonzáles
+#    - Kevin Javier Reyes Medina
+#
+#-----------------------------------------------------
+
 from django.conf.urls.static import static
+from django.contrib import admin
 from django.urls import path
+from django.urls.conf import include
+
+from .settings import DEBUG
 
 urlpatterns = [
-	path('admin/', admin.site.urls),
-	path('', include('food_management_app.urls')),
-	path('usuario/', include('food_management_app.urls_usuario')),
-	path('organizacion/', include('food_management_app.urls_organizacion')),
-	path('publicacion/', include('food_management_app.urls_publicacion')),
-] + static(settings.MEDIA_URL, document_root=settings.MEDIA_ROOT)
+    path('', include('home.urls')),
+    path('publicaciones/', include('publicaciones.urls')),
+    path('usuarios/', include('usuarios.urls'))
+]
 
-handler404 = 'food_management_app.views.error_404'
+if DEBUG:
+    urlpatterns.append(path('admin/', admin.site.urls))
 
 # Copyright: Null Pointers 2021
